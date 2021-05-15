@@ -1,55 +1,418 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        * {
-            margin: 0;
-        }
-        ul.navbar{
-            position: fixed;
-            top: 0;
-            width: 100%;
+<title>Simulation of sea level rise</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            
-            background-color: #202020;
-            
-        }
+<link rel="stylesheet" href="openlayers/ol.css" type="text/css">
+<!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+<script src="openlayers/ol.js"></script>
 
-        li{
-            float: left;
-        }
-        ul.navbar li a{
-            display: block;
-            color: rgb(255, 255, 255);
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-family:cursive;
-        }
-        ul.navbar li a:hover{
-        	background-color: rgb(153, 153, 153);
-        }
-        .active {
-            background-color: #005ce6;
-        }
+<style>
 
-    </style>
+#map {
+
+} 
+
+#slider_div {
+  z-index: 10;  
+  position: absolute;  
+  right: 0;  
+  top: 0;  
+  width: 400px;
+  padding-left: 10px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+#level {
+  display: inline-block;
+  width: 200px;
+  vertical-align: text-bottom;
+}
+
+</style>
 </head>
+
 <body>
-    <ul class="navbar">
-        <li style="float:right"><a href="index.html">Cities Transformation</a></li>
-        <li><a href="About.html">About</a></li>
-        <li><a href="General View.html">General View</a></li>
-        <li><a href="China.html">China</a></li>
-        <li><a href="India.html">India</a></li>
-        <li><a class="active" href="Future Impact.html">Future Impact</a></li>
-    </ul>
-    <div id='testdiv'style="margin-top:50px">
-        <p> This is Future Impact Page.</p>
-    </div>
+
+<div id="slider_div">
+<h3>Simulation of sea level rise</h3>
+Range: <select id="range_select" onchange="range_select_change(this);"></select>
+<br>
+<svg id="levelslider" xmlns="http://www.w3.org/2000/svg" version="1.1" 
+width="350" height="500">
+</svg>
+</div>
+
+<div id="map" class="map"></div>
+
+<div id="attributions">
+Sources: 
+<a href="https://maps.wikimedia.org/">map</a>, 
+<a href="https://aws.amazon.com/public-datasets/terrain/">terrain</a>,
+<a href="https://openlayers.org/en/latest/examples/sea-level.html">openlayers</a>
+</div>
+
+<script>
+
+///////////////////////////////////////////////////////////////////////////////
+// Global vars
+
+var svgNS_ = 'http://www.w3.org/2000/svg';
+
+var profiles_ = [
+  {
+    "name": "Interglacial",
+    "range": [0., 8.9],
+    "levels": [
+      {"level": 8.9, "name": "warm up by 4°C"},
+      {"level": 7.9, "name": "warm up by 3.5°C"},
+      {"level": 6.4, "name": "warm up by 3°C"},
+      {"level": 5.6, "name": "warm up by 2.5°C"},
+      {"level": 4.7, "name": "warm up by 2°C"},
+      {"level": 2.9, "name": "warm up by 1.5°C"},
+      {"level": 2.1, "name": "warm up by 1°C predictive value by 2080"},
+      {"level": 0.7, "name": "warm up by 0.5°C predictive value by 2050"},
+      {"level": 0., "name": "current sea level"},
+    ]
+  },
+  {
+    "name": "Whole Earth",
+    "range": [-130., 70.],
+    "levels": [
+      {"level": 70., "name": "all ice caps melt"},
+      {"level": 8., "name": "last interglacial"},
+      {"level": 0., "name": "current sea level"},
+      {"level": -130., "name": "last glacial min"}
+    
+    ]
+  }
+];
+var idx_profile_ = 0;
+
+// Current sea level
+var level_ = 0.;
+
+// Slider bounds
+var slider_y_min_ = 0;
+var slider_y_max_ = 0;
+
+// Mouse state for slider
+var mouse_is_down_on_slider_ = false;
+var mouse_is_down_ = false;
+var mouseY_ = 0;
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Math
+
+function clamp(x, lo, hi) {
+  return Math.max(Math.min(x, hi), lo);
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Event handlers
+
+function onMouseDown( event ) {
+  mouse_is_down_ = true;
+  mouseX_ = event.clientX;
+  mouseY_ = event.clientY;
+}
+
+
+function onMouseUp( event ) {
+  mouse_is_down_ = false;
+  mouse_is_down_on_slider_ = false;
+}
+
+
+function onMouseMove(event) {
+  if (mouse_is_down_ == false) return;
+  var deltaY = event.clientY - mouseY_;
+  mouseY_ = event.clientY;
+ 
+  if (mouse_is_down_on_slider_) {
+    move_slider(deltaY);
+  }
+}
+  
+
+// Disable text select if moving slider
+function onSelectStart(event) {
+  if (mouse_is_down_on_slider_) {
+    event.preventDefault();
+  }
+}
+
+  
+function onKeyDown(event) {
+  var deltaY = 0;
+  switch(event.which) {
+    case 38: // up
+    deltaY = -0.1;
+    break;
+
+    case 40: // down
+    deltaY = 0.1;
+    break;
+
+    default: return; // exit this handler for other keys
+  }
+  event.preventDefault(); // prevent the default action (scroll / move caret)
+  move_slider(deltaY);
+}
+
+
+function levelslider_down(obj) {
+  mouse_is_down_on_slider_ = true;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Sidebar
+
+function load_range_select() {
+  var select = document.getElementById("range_select");
+
+  for (var i = 0; i < profiles_.length; ++i) {    
+    var opt = document.createElement('option');
+    opt.value = i;
+    opt.innerHTML = profiles_[i].name;
+    select.appendChild(opt);
+  }
+}
+
+
+function range_select_change(select) {
+  idx_profile_ = select.value;    
+  create_slider();
+  move_slider(0);
+}
+
+
+function get_y_from_level(level) {
+  var level_min = profiles_[idx_profile_].range[0];
+  var level_max = profiles_[idx_profile_].range[1];
+  var x = (level - level_min)/(level_max - level_min);
+  var y = slider_y_max_ - x*(slider_y_max_ - slider_y_min_);
+  return y;
+}
+  
+
+function get_level_from_y(y) {
+  var level_min = profiles_[idx_profile_].range[0];
+  var level_max = profiles_[idx_profile_].range[1];
+  var x = (slider_y_max_ - y)/(slider_y_max_ - slider_y_min_);  // [0..1]
+  var level = x*(level_max - level_min) + level_min;
+  return level;
+}
+
+
+function create_slider() {
+  var levelslider = document.getElementById("levelslider");
+  
+  // Clean out lingering items
+  while (levelslider.firstChild) {
+    levelslider.removeChild(levelslider.firstChild);
+  }  
+  
+  var x_max = levelslider.width.baseVal.value;
+  var y_max = levelslider.height.baseVal.value;
+  
+  slider_y_min_ = 50;
+  slider_y_max_ = y_max - 50;
+
+  var x_mid = 20;
+  var slider_width = 10;
+  var slider_y = get_y_from_level(level_);
+  
+  // Horizontal axis
+  var obj = document.createElementNS(svgNS_, "line"); 
+  obj.setAttribute("stroke", "black");
+  obj.setAttribute("stroke-width", 1);
+  obj.setAttribute("x1", x_mid);
+  obj.setAttribute("x2", x_mid);
+  obj.setAttribute("y1", slider_y_min_);
+  obj.setAttribute("y2", slider_y_max_);
+  levelslider.appendChild(obj);
+  
+  // Slider
+  var obj = document.createElementNS(svgNS_, "rect"); 
+  obj.setAttribute("id", "leveltoggle");
+  obj.setAttribute("fill", "black");
+  obj.setAttribute("x", x_mid-slider_width);
+  obj.setAttribute("width", 2*slider_width);
+  obj.setAttribute("y", slider_y);
+  obj.setAttribute("height", 10);
+  obj.setAttribute('cursor', 'row-resize');
+  obj.setAttribute("onmousedown", "levelslider_down(this);");
+  levelslider.appendChild(obj);
+  
+  levelslider.addEventListener('mousedown', onMouseDown, false);
+  levelslider.addEventListener('mouseup', onMouseUp, false);
+  levelslider.addEventListener('mousemove', onMouseMove, false);
+  levelslider.addEventListener('selectstart', onSelectStart, false);
+  window.addEventListener('keydown', onKeyDown, false);
+ 
+  // Level text
+  var obj = document.createElementNS(svgNS_, "text");
+  obj.setAttribute("fill", "black");
+  obj.setAttribute("font-family", "Arial");
+  obj.setAttribute("font-size", "14px");
+  obj.appendChild(document.createTextNode("yooooo!"));
+  obj.setAttribute("x", 30);
+  obj.setAttribute("y", 30);
+  obj.setAttribute("id", "leveldisplay");
+  obj.setAttribute("text-anchor", "middle");
+  levelslider.appendChild(obj);
+
+  // Add markers
+  for (var i = 0; i < profiles_[idx_profile_].levels.length; ++i) {
+    add_level_marker(profiles_[idx_profile_].levels[i].level,
+                     profiles_[idx_profile_].levels[i].name);
+  }
+}
+
+
+function add_level_marker(level, label) {
+  var levelslider = document.getElementById("levelslider");
+  
+  var x_slider = 20;
+  var x_label = 45;
+
+  var y = get_y_from_level(level)+5;
+  
+  // text
+  var obj = document.createElementNS(svgNS_, "text");
+  obj.setAttribute("fill", "black");
+  obj.setAttribute("font-family", "Arial");
+  obj.setAttribute("font-size", "12px");
+  var text = format_level(level) + " - " + label;
+  obj.appendChild(document.createTextNode(text));
+  obj.setAttribute("x", x_label);
+  obj.setAttribute("y", y);
+  obj.setAttribute("id", "leveldisplay");
+  obj.setAttribute("text-anchor", "left");
+  obj.setAttribute("alignment-baseline", "central");
+  obj.setAttribute("onclick", "set_level("+level+");");
+  obj.setAttribute("cursor", "pointer");
+  levelslider.appendChild(obj);
+
+  // line
+  var obj = document.createElementNS(svgNS_, "line"); 
+  obj.setAttribute("stroke", "black");
+  obj.setAttribute("stroke-width", 1);
+  obj.setAttribute("x1", x_slider);
+  obj.setAttribute("x2", x_label-5);
+  obj.setAttribute("y1", y);
+  obj.setAttribute("y2", y);
+  levelslider.appendChild(obj);
+}
+
+
+function format_level(level) {
+  return level.toFixed(2)+" m";
+}
+
+
+function move_slider(deltaY) {
+  var obj = document.getElementById("leveltoggle");
+  var slider_y_current = Number(obj.getAttribute("y"));
+  var slider_y = clamp(slider_y_current + deltaY, slider_y_min_, slider_y_max_);
+  set_level(get_level_from_y(slider_y));
+}
+  
+
+function set_level(level) {
+  level_ = level;
+  
+  // update map
+  raster.changed();
+  
+  // update level text
+  document.getElementById("leveldisplay").textContent = format_level(level_);
+  
+  // update slider
+  document.getElementById("leveltoggle")
+    .setAttribute("y", get_y_from_level(level_));
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Visualization
+
+function flood(pixels, data) {
+  // alpha: pixel[3];  alpha == 0: transparent,  alpha == 255: opaque
+  // height: terrain altitude
+  // level: user-inputed "sea level"
+  var pixel = pixels[0];
+  var level = data.level;
+  if (pixel[3]) {
+    var height = (pixel[0] * 256 + pixel[1] + pixel[2] / 256) - 32768;
+    pixel[3] = 0;  // default transparent
+    if (height < level) {
+      // Add blue tone
+      pixel[0] = 100.0;
+      pixel[1] = 100.0;
+      pixel[2] = 255.0;
+      pixel[3] = 200;
+    } else if (height > level && height < 0) {
+      // Add green tone
+      pixel[0] = 180;
+      pixel[1] = 180;
+      pixel[2] = 50;
+      pixel[3] = 200;
+    }
+  }
+  return pixel;
+}
+
+
+var elevation = new ol.source.XYZ({
+  url: 'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png',
+  crossOrigin: 'anonymous',
+  transition: 0
+});
+
+var raster = new ol.source.Raster({
+  sources: [elevation],
+  operation: flood
+});
+
+var map = new ol.Map({
+  target: 'map',
+  layers: [
+    new ol.layer.Tile({
+      source: new ol.source.XYZ({
+        url: 'https://mt1.google.com/vt/lyrs=t&x={x}&y={y}&z={z}'
+      })
+    }),
+    new ol.layer.Image({
+      opacity: 0.6,
+      source: raster
+    })
+  ],
+  view: new ol.View({
+    center: ol.proj.fromLonLat([121.3267, 30.8377]),
+    zoom: 7
+  })
+});
+
+
+raster.on('beforeoperations', function(event) {
+  event.data.level = level_;
+});
+
+
+
+
+load_range_select();
+create_slider();
+move_slider(0);
+
+</script>
 </body>
 </html>
