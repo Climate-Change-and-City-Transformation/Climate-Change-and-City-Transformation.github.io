@@ -535,16 +535,16 @@ class Legend {
 }
 
 async function initData() {
-  let city = await d3.json("./data/city_simple.json");
+  let city = await d3.json("./data/China/city_simple.json");
 
-  let province = await d3.json("./data/province_simplify.json");
+  let province = await d3.json("./data/China/province_simplify.json");
 
   // let world = await d3.json("./data/world.json");
-  let capitalCo2 = await d3.csv("./data/capital.csv");
+  let capitalCo2 = await d3.csv("./data/China/capital.csv");
 
-  let cityCo2 = await d3.csv("./data/city.csv");
+  let cityCo2 = await d3.csv("./data/China/city.csv");
 
-  let provinceCo2 = await d3.csv("./data/province.csv");
+  let provinceCo2 = await d3.csv("./data/China/province.csv");
 
   unionData();
   function unionData() {
