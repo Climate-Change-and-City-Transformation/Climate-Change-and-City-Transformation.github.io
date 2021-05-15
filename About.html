@@ -5,10 +5,16 @@
         * {
             margin: 0;
         }
+        body {
+            margin: 0;
+            z-index:1;
+        }
+        /* Top navigation style */
         ul.navbar{
             position: fixed;
             top: 0;
             width: 100%;
+            z-index:2;
 
             list-style-type: none;
             margin: 0;
@@ -40,6 +46,7 @@
     </style>
 </head>
 <body>
+    <!-- Top navigation div -->
     <ul class="navbar">
         <li style="float:right"><a  href="index.html">Cities Transformation</a></li>
         <li><a class="active" href="About.html">About</a></li>
