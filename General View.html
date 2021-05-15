@@ -36,7 +36,7 @@
         body {
             margin: 0;
             box-sizing: content-box;
-
+            z-index:1;
         }
 
         .title {
@@ -161,7 +161,8 @@
             --rough-fill-weight: 9;
             --rough-fill-style: zigzag;
         }
-        
+
+        /* Top navigation style */
         ul.navbar{
             position: fixed;
             top: 0;
@@ -312,10 +313,13 @@
         * {
             margin: 0;
         }
+        
+        /* Top navigation style */
         ul.navbar{
             position: fixed;
             top: 0;
             width: 100%;
+            z-index:2;
 
             list-style-type: none;
             margin: 0;
@@ -347,6 +351,8 @@
     </style>
 </head>
 <body>
+
+    <!-- Top navigation div -->
     <ul class="navbar">
         <li style="float:right"><a href="Index.html">Cities Transformation</a></li>
         <li><a href="About.html">About</a></li>
@@ -355,6 +361,7 @@
         <li><a href="India.html">India</a></li>
         <li><a href="Future Impact.html">Future Impact</a></li>
     </ul>
+
       <div id='testdiv'style="margin-top:50px">
           <p> </p>
       </div>
