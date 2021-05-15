@@ -5,12 +5,11 @@ var parseDate = d3.timeParse("%Y");
 
     // set the dimensions and margins of the graph
     var margin = {top: 30, right: 0, bottom: 30, left: 50},
-        width = (window.innerWidth - 500) - margin.left - margin.right,
-        height = (window.innerHeight - 500) - margin.top - margin.bottom,
-        tooltip = { width: 100, height: 100, x: 10, y: -30};
+        width = 400 - margin.left - margin.right,
+        height = 150 - margin.top - margin.bottom;
     
     //Read the data
-    d3.csv("./data/DR_combined5.csv", function(error, data) {
+    d3.csv("./data/General/DR_combined5.csv", function(error, data) {
         if (error) throw error;
 
         data.forEach(function(d) {
@@ -56,12 +55,11 @@ var parseDate = d3.timeParse("%Y");
         .attr("y", 0 - margin.left + 20)
         .attr("x",0 - (height / 2))
         .attr("dy", "1em")
-        .style("text-anchor", "middle")
-        .text("Normalised Value");
+        .style("text-anchor", "middle");
 
         var color = d3.scaleOrdinal()
             .domain(allKeys)
-            .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999']);
+            .range(['#1f77b4','#aec7e8','#ff7f0e','#ffbb78','#2ca02c']);
 
         svg
             .append("path")
@@ -82,4 +80,5 @@ var parseDate = d3.timeParse("%Y");
             .attr("x", 0)
             .text(function(d){ return(d.key)})
             .style("fill", function(d){ return color(d.key) });
+  
     });

@@ -4,16 +4,25 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 <!-- Color Scale -->
-<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-<script type="module" src="small_multiples.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script> 
 <script type="module" src="tooltip.js"></script>
+<script type="module" src="small_multiples.js"></script>
     <style>
               * {
             margin: 0;
         }
-        .chart {
+        .my_dataviz_tooltip {
             width: 100%;
-            height: 90vh;
+            height: 100%;
+            display: grid;
+            grid-template-rows: 10% 80%;
+            background-color: #f4f4f4;
+
+        }
+
+        .my_dataviz_smallmultiples {
+            width: fit-content;
+            height: fit-content;
             display: grid;
             grid-template-rows: 10% 80%;
             background-color: #f4f4f4;
@@ -24,11 +33,6 @@
             width: 100%;
         }
 
-        /* svg {
-            background-image: url("./img/world.png");
-            background-size: cover;
-        } */
-
         .domain {
             stroke: lightgray;
         }
@@ -36,7 +40,7 @@
         body {
             margin: 0;
             box-sizing: content-box;
-            z-index:1;
+
         }
 
         .title {
@@ -51,8 +55,6 @@
             fill: gray
 
         }
-
-
 
         g line {
             stroke: lightgray;
@@ -124,7 +126,14 @@
         #container1 {
             height: 100%;
             width: 100%;
-            overflow: hidden;
+            overflow: auto;
+
+        }
+
+        #container2 {
+            height: 100%;
+            width: 100%;
+            overflow: scroll;
 
         }
 
@@ -161,8 +170,7 @@
             --rough-fill-weight: 9;
             --rough-fill-style: zigzag;
         }
-
-        /* Top navigation style */
+        
         ul.navbar{
             position: fixed;
             top: 0;
@@ -176,68 +184,6 @@
             background-color: #202020;
             
         }
-
-        li{
-            float: left;
-        }
-        ul.navbar li a{
-            display: block;
-            color: rgb(255, 255, 255);
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-family:cursive;
-        }
-        ul.navbar li a:hover{
-        	background-color: rgb(153, 153, 153);
-        }
-        .active {
-            background-color: #005ce6;
-        }
-
-#my_dataviz_tooltip > div {
-    display: inline-block;
-    height: 185px;
-    width: 50%
-  }  
-@media (min-width: 600px) {
-    #my_dataviz_tooltip > div {
-      width: 33%
-    }
-  }
-  @media (min-width: 800px) {
-    #my_dataviz_tooltip > div {
-      width: 25%
-    }
-  }
-  @media (min-width: 1000px) {
-    #my_dataviz_tooltip > div {
-      width: 20%
-    }
-  }
-
-  #my_dataviz_smallmultiples > div {
-    display: inline-block;
-    height: 185px;
-    width: 50%
-  }  
-@media (min-width: 600px) {
-    #my_dataviz_smallmultiples > div {
-      width: 33%
-    }
-  }
-  @media (min-width: 800px) {
-    #my_dataviz_smallmultiples > div {
-      width: 25%
-    }
-  }
-  @media (min-width: 1000px) {
-    #my_dataviz_smallmultiples > div {
-      width: 20%
-    }
-  }
-
-  
 
         .line {
           fill: none;
@@ -313,13 +259,10 @@
         * {
             margin: 0;
         }
-        
-        /* Top navigation style */
         ul.navbar{
             position: fixed;
             top: 0;
             width: 100%;
-            z-index:2;
 
             list-style-type: none;
             margin: 0;
@@ -351,8 +294,6 @@
     </style>
 </head>
 <body>
-
-    <!-- Top navigation div -->
     <ul class="navbar">
         <li style="float:right"><a href="Index.html">Cities Transformation</a></li>
         <li><a href="About.html">About</a></li>
@@ -361,26 +302,59 @@
         <li><a href="India.html">India</a></li>
         <li><a href="Future Impact.html">Future Impact</a></li>
     </ul>
-
-      <div id='testdiv'style="margin-top:50px">
-          <p> </p>
-      </div>
-
-      <div class="middleThings">
-        <div class="rough-box-title">
-            <h1 class="title">
+  <div class="rough-box-title">
+        <h1 class="title">
               Global Climate Change Indicators and Trends
-            </h1>
-        </div>
+        </h1>
+  </div>
         <h2 class='text'>
           Based on data from <a href="https://climate.nasa.gov/">NASA</a> and <a href="https://ourworldindata.org/grapher/co2-concentration-long-term">Our World in Data</a>.</a>
       </h2>
+<!-- Create a div where the graph will take place -->
+      <!-- text -->
+      <section>
+        <div class="right-side-div">
+          <div class="right-side-header" >
+              <span style="margin-left:5px;">
+                  Introduction
+              </span>
+          </div>
+          <p class="right-text">
+              If you’re familiar with the geography and economics of Europe, you might know that the more
+              economically developed countries are situated in western and northern Europe. On the map,
+              more
+              developed countries are shaded in green and less developed countries are in shades of pink,
+              denoting
+              each country’s GDP. Each color corresponds to a threshold set by the EU, which we’ll explain
+              in
+              subsequent sections.
+          </p>  
+<div id="container1">
 <!-- Initialize a select button -->
 <select id="selectButton"></select>
-<!-- Create a div where the graph will take place -->
-<div id="my_dataviz_tooltip"></div>
-
-<div id="my_dataviz_smallmultiples"></div>
+  <section id="my_dataviz_tooltip">
+</section>
+</div>
+<div class="right-side-div">
+    <div class="right-side-header" >
+        <span style="margin-left:5px;">
+            Introduction
+        </span>
+    </div>
+<p class="right-text">
+    If you’re familiar with the geography and economics of Europe, you might know that the more
+    economically developed countries are situated in western and northern Europe. On the map,
+    more
+    developed countries are shaded in green and less developed countries are in shades of pink,
+    denoting
+    each country’s GDP. Each color corresponds to a threshold set by the EU, which we’ll explain
+    in
+    subsequent sections.
+</p>  
+<div id="container2">
+  <section id="my_dataviz_smallmultiples">
+  </section>
+  </div>
       <script>
           CSS.paintWorklet.addModule('./dist/rough-painter.bundled.js');
       </script>

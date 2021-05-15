@@ -24,7 +24,7 @@ var parseDate = d3.timeParse("%Y");
       .style("display", "none");
     
     //Read the data
-    d3.csv("./data/DR_combined4.csv", function(error, data) {
+    d3.csv("./data/General/DR_combined4.csv", function(error, data) {
       if (error) throw error;
 
       data.forEach(function(d) {
@@ -49,6 +49,7 @@ var parseDate = d3.timeParse("%Y");
         var myColor = d3.scaleOrdinal()
           .domain(allGroup)
           .range(d3.schemeCategory20); 
+
     
         // Add X axis --> it is a date format initialising with sea level rise
         var x = d3.scaleTime()
