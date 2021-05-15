@@ -1,0 +1,79 @@
+Year,DisasterType,deaths
+2000,Extreme temp.,275
+2000,Flood,2086
+2000,Landslide,187
+2001,Earthquake,20005
+2001,Extreme temp.,173
+2001,Flood,581
+2001,Landslide,98
+2001,Storm,99
+2002,Earthquake,2
+2002,Extreme temp.,1930
+2002,Flood,735
+2002,Storm,144
+2003,Extreme temp.,1610
+2003,Flood,452
+2003,Landslide,25
+2003,Storm,164
+2004,Earthquake,16389
+2004,Flood,1348
+2005,Earthquake,1309
+2005,Extreme temp.,509
+2005,Flood,2129
+2005,Landslide,262
+2005,Storm,82
+2006,Extreme temp.,47
+2006,Flood,1194
+2006,Storm,190
+2007,Extreme temp.,185
+2007,Flood,2051
+2008,Extreme temp.,70
+2008,Flood,1590
+2008,Landslide,37
+2008,Storm,111
+2009,Extreme temp.,220
+2009,Flood,1500
+2009,Landslide,55
+2009,Storm,218
+2010,Extreme temp.,250
+2010,Flood,690
+2010,Landslide,17
+2010,Storm,287
+2011,Earthquake,112
+2011,Extreme temp.,212
+2011,Flood,608
+2011,Storm,106
+2012,Extreme temp.,264
+2012,Flood,279
+2012,Storm,40
+2013,Earthquake,3
+2013,Extreme temp.,557
+2013,Flood,6453
+2013,Storm,106
+2014,Extreme temp.,180
+2014,Flood,622
+2014,Landslide,151
+2014,Storm,119
+2015,Earthquake,98
+2015,Extreme temp.,2248
+2015,Flood,839
+2015,Landslide,3
+2015,Storm,212
+2016,Earthquake,8
+2016,Extreme temp.,300
+2016,Flood,666
+2016,Landslide,20
+2016,Storm,128
+2017,Extreme temp.,264
+2017,Flood,1046
+2017,Landslide,96
+2017,Storm,940
+2018,Extreme temp.,44
+2018,Flood,710
+2018,Storm,625
+2019,Extreme temp.,112
+2019,Flood,2023
+2019,Storm,172
+2020,Flood,2104
+2020,Landslide,91
+2020,Storm,121
