@@ -1,7 +1,314 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+<!-- Color Scale -->
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script type="module" src="small_multiples.js"></script>
+<script type="module" src="tooltip.js"></script>
     <style>
+              * {
+            margin: 0;
+        }
+        .chart {
+            width: 100%;
+            height: 90vh;
+            display: grid;
+            grid-template-rows: 10% 80%;
+            background-color: #f4f4f4;
+
+        }
+
+        #map {
+            width: 100%;
+        }
+
+        /* svg {
+            background-image: url("./img/world.png");
+            background-size: cover;
+        } */
+
+        .domain {
+            stroke: lightgray;
+        }
+
+        body {
+            margin: 0;
+            box-sizing: content-box;
+
+        }
+
+        .title {
+            font-size: 4rem;
+            text-align: center;
+            font-weight:lighter;
+            font-family:cursive;
+            color:rgb(0, 0, 0);
+        }
+
+        text {
+            fill: gray
+
+        }
+
+
+
+        g line {
+            stroke: lightgray;
+        }
+
+        .right-side-div {
+            height: 100vh;
+            margin-left:10px;
+
+        }
+        .middleThings{
+            width: 50%;
+            margin: 0 auto;
+        }
+        .midHeader{
+            background-color:gray;
+            margin-top:50px;
+            margin-bottom:10px;
+            text-align: center;
+            color:rgb(255, 255, 255);
+            font-size:25px;
+            font-family:Verdana;
+            vertical-align:middle;
+            font-weight:bold;
+            margin-left:10px;
+        }
+        .text{
+            font-size: 20px;
+            text-align: center;
+            font-weight:lighter;
+            font-family:cursive;
+            margin-top:35px;
+            margin-bottom:35px;
+        }
+        .mid-text{
+            font-size: 20px;
+            font-weight:lighter;
+            font-family:cursive;
+            margin-top:35px;
+            margin-bottom:35px;
+            margin-left:10px;
+            width:100%;
+        }
+
+        .right-side-header{
+            background-color:gray;
+            margin-bottom:10px;
+            color:rgb(255, 255, 255);
+            font-size:15px;
+            font-family:cursive;
+            font-weight:bold;
+        }
+        .right-text {
+            background-color: #f1f1f1;
+            border-left: 2px solid gray;
+            font-family:cursive;
+            padding: 5px;
+        }
+
+        #chartArea {
+            display: grid;
+            grid-template-columns: 70% 25%;
+            height: 99vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+            padding-right: 18px;
+        }
+        #container1 {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+
+        }
+
+        .flourish-embed{
+            text-align: center;
+            width: 100%;
+        }
+
+        .rough-box {
+            max-width: 500px;
+            margin: 0 auto;
+            margin-bottom:35px;
+            padding: 20px;
+            color: rgb(255, 255, 255);
+            background-image: paint(rough-painter);
+        }
+        .rough-box {
+            --rough-border-width: 3;
+            --rough-fill: rgb(194, 188, 188);
+            --rough-fill-weight: 9;
+            --rough-fill-style: zigzag;
+        }
+        .rough-box-title {
+            margin: 0 auto;
+            margin-top:70px;
+            margin-bottom:35px;
+            padding: 20px;
+            color: rgb(255, 255, 255);
+            background-image: paint(rough-painter);
+        }
+        .rough-box-title {
+            --rough-border-width: 3;
+            --rough-fill: rgb(219, 219, 219); 
+            --rough-fill-weight: 9;
+            --rough-fill-style: zigzag;
+        }
+        
+        ul.navbar{
+            position: fixed;
+            top: 0;
+            width: 100%;
+
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            
+            background-color: #202020;
+            
+        }
+
+        li{
+            float: left;
+        }
+        ul.navbar li a{
+            display: block;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-family:cursive;
+        }
+        ul.navbar li a:hover{
+        	background-color: rgb(153, 153, 153);
+        }
+        .active {
+            background-color: #005ce6;
+        }
+
+#my_dataviz_tooltip > div {
+    display: inline-block;
+    height: 185px;
+    width: 50%
+  }  
+@media (min-width: 600px) {
+    #my_dataviz_tooltip > div {
+      width: 33%
+    }
+  }
+  @media (min-width: 800px) {
+    #my_dataviz_tooltip > div {
+      width: 25%
+    }
+  }
+  @media (min-width: 1000px) {
+    #my_dataviz_tooltip > div {
+      width: 20%
+    }
+  }
+
+  #my_dataviz_smallmultiples > div {
+    display: inline-block;
+    height: 185px;
+    width: 50%
+  }  
+@media (min-width: 600px) {
+    #my_dataviz_smallmultiples > div {
+      width: 33%
+    }
+  }
+  @media (min-width: 800px) {
+    #my_dataviz_smallmultiples > div {
+      width: 25%
+    }
+  }
+  @media (min-width: 1000px) {
+    #my_dataviz_smallmultiples > div {
+      width: 20%
+    }
+  }
+
+  
+
+        .line {
+          fill: none;
+          stroke: steelblue;
+          stroke-width: 2px;
+        }
+
+        .grid line {
+          stroke: lightgrey;
+          stroke-opacity: 0.6;
+          shape-rendering: crispEdges;
+        }
+        
+        .grid path{
+          stroke-width: 0;
+        }
+
+          .overlay{
+            fill: none;
+            pointer-events: all;
+          }
+
+          .focus circle {
+            fill: steelblue;
+          }
+
+        .tooltip {
+          width: 180px;
+          padding: 4px 10px;
+          border: 1px solid #aaa;
+          border-radius: 4px;
+          box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+          position: fixed;
+          background-color: white;
+          font-size: 14px;
+          pointer-events: none;
+          -webkit-transition: all 0.25s;
+          -moz-transition: all 0.25s;
+          -ms-transition: all 0.25s;
+          -o-transition: all 0.25s;
+          transition: all 0.25s;
+          }
+
+        .tooltip div {
+          margin: 3px 0;
+          }
+
+        .tooltip-year, .tooltip-title {
+          font-weight: bold;
+          }
+  
+          #header {
+              margin: auto;
+              width: 100%;
+          }
+          
+           h1 {
+              margin: auto;
+              padding: 10px 0 0 0;
+              font: bold 25px Verdana;
+          }
+          
+          h2 {
+              margin: 5px 15px 10px 20px;
+              padding: 0;
+              font: bold 16px Verdana;
+          }
+          
+          p {
+              margin: 0 15px 15px 20px;
+              padding: 0 0 0 0;
+          }
         * {
             margin: 0;
         }
@@ -41,15 +348,35 @@
 </head>
 <body>
     <ul class="navbar">
-        <li style="float:right"><a href="index.html">Cities Transformation</a></li>
+        <li style="float:right"><a href="Index.html">Cities Transformation</a></li>
         <li><a href="About.html">About</a></li>
         <li><a class="active" href="General View.html">General View</a></li>
         <li><a href="China.html">China</a></li>
         <li><a href="India.html">India</a></li>
         <li><a href="Future Impact.html">Future Impact</a></li>
     </ul>
-    <div id='testdiv'style="margin-top:50px">
-        <p> This is General View Page.</p>
-    </div>
+      <div id='testdiv'style="margin-top:50px">
+          <p> </p>
+      </div>
+
+      <div class="middleThings">
+        <div class="rough-box-title">
+            <h1 class="title">
+              Global Climate Change Indicators and Trends
+            </h1>
+        </div>
+        <h2 class='text'>
+          Based on data from <a href="https://climate.nasa.gov/">NASA</a> and <a href="https://ourworldindata.org/grapher/co2-concentration-long-term">Our World in Data</a>.</a>
+      </h2>
+<!-- Initialize a select button -->
+<select id="selectButton"></select>
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz_tooltip"></div>
+
+<div id="my_dataviz_smallmultiples"></div>
+      <script>
+          CSS.paintWorklet.addModule('./dist/rough-painter.bundled.js');
+      </script>
+    
 </body>
 </html>

@@ -1,0 +1,86 @@
+﻿year,ClimateEvent,category,value,n
+2002,Sea Level Rise ,Sea Height Variation (mm),-7.07,-1.370289291
+2003,Sea Level Rise ,Sea Height Variation (mm),-3.705945946,-1.185487343
+2004,Sea Level Rise ,Sea Height Variation (mm),-1.745135135,-1.077771578
+2005,Sea Level Rise ,Sea Height Variation (mm),3.045945946,-0.814576902
+2006,Sea Level Rise ,Sea Height Variation (mm),4.394166667,-0.740513343
+2007,Sea Level Rise ,Sea Height Variation (mm),5.102432432,-0.70160526
+2008,Sea Level Rise ,Sea Height Variation (mm),7.278611111,-0.582058412
+2009,Sea Level Rise ,Sea Height Variation (mm),12.38297297,-0.301653876
+2010,Sea Level Rise ,Sea Height Variation (mm),13.68216216,-0.23028383
+2011,Sea Level Rise ,Sea Height Variation (mm),13.02756757,-0.266243525
+2012,Sea Level Rise ,Sea Height Variation (mm),23.9172973,0.331976134
+2013,Sea Level Rise ,Sea Height Variation (mm),26.33621622,0.464857747
+2014,Sea Level Rise ,Sea Height Variation (mm),29.98666667,0.66539268
+2015,Sea Level Rise ,Sea Height Variation (mm),40.97297297,1.268917704
+2016,Sea Level Rise ,Sea Height Variation (mm),43.23837838,1.39336616
+2017,Sea Level Rise ,Sea Height Variation (mm),44.34486486,1.454150218
+2018,Sea Level Rise ,Sea Height Variation (mm),48.67135135,1.691822716
+2002,Global Land-Ocean Temperature Index ,Temperature Anomaly (Celsius),0.55,-1.303207641
+2003,Global Land-Ocean Temperature Index ,Temperature Anomaly (Celsius),0.59,-1.027319673
+2004,Global Land-Ocean Temperature Index ,Temperature Anomaly (Celsius),0.61,-0.889375688
+2005,Global Land-Ocean Temperature Index ,Temperature Anomaly (Celsius),0.62,-0.820403696
+2006,Global Land-Ocean Temperature Index ,Temperature Anomaly (Celsius),0.63,-0.751431704
+2007,Global Land-Ocean Temperature Index ,Temperature Anomaly (Celsius),0.64,-0.682459712
+2008,Global Land-Ocean Temperature Index ,Temperature Anomaly (Celsius),0.64,-0.682459712
+2009,Global Land-Ocean Temperature Index ,Temperature Anomaly (Celsius),0.65,-0.61348772
+2010,Global Land-Ocean Temperature Index ,Temperature Anomaly (Celsius),0.65,-0.61348772
+2011,Global Land-Ocean Temperature Index ,Temperature Anomaly (Celsius),0.67,-0.475543735
+2012,Global Land-Ocean Temperature Index ,Temperature Anomaly (Celsius),0.7,-0.268627759
+2013,Global Land-Ocean Temperature Index ,Temperature Anomaly (Celsius),0.74,0.00726021
+2014,Global Land-Ocean Temperature Index ,Temperature Anomaly (Celsius),0.79,0.352120171
+2015,Global Land-Ocean Temperature Index ,Temperature Anomaly (Celsius),0.83,0.628008139
+2016,Global Land-Ocean Temperature Index ,Temperature Anomaly (Celsius),0.88,0.9728681
+2017,Global Land-Ocean Temperature Index ,Temperature Anomaly (Celsius),0.91,1.179784077
+2018,Global Land-Ocean Temperature Index ,Temperature Anomaly (Celsius),0.95,1.455672045
+2002,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),373.28,-1.54918695
+2003,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),375.8,-1.32038987
+2004,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),377.52,-1.164226784
+2005,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),379.8,-0.957219902
+2006,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),381.9,-0.766555669
+2007,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),383.79,-0.594957859
+2008,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),385.6,-0.430623449
+2009,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),387.43,-0.264473188
+2010,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),389.9,-0.040215733
+2011,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),391.65,0.118671128
+2012,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),393.85,0.31841461
+2013,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),396.52,0.560830564
+2014,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),398.65,0.754218571
+2015,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),400.83,0.952146204
+2016,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),404.24,1.261748602
+2017,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),406.55,1.471479258
+2018,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),408.52,1.650340467
+2002,Average Arctic Ice Area in September ,Million Square Kilometres,4030000,1.071966293
+2003,Average Arctic Ice Area in September ,Million Square Kilometres,4050000,1.109965098
+2004,Average Arctic Ice Area in September ,Million Square Kilometres,4390000,1.755944786
+2005,Average Arctic Ice Area in September ,Million Square Kilometres,4070000,1.147963903
+2006,Average Arctic Ice Area in September ,Million Square Kilometres,4010000,1.033967488
+2007,Average Arctic Ice Area in September ,Million Square Kilometres,2820000,-1.226961419
+2008,Average Arctic Ice Area in September ,Million Square Kilometres,3260000,-0.390987706
+2009,Average Arctic Ice Area in September ,Million Square Kilometres,3760000,0.558982423
+2010,Average Arctic Ice Area in September ,Million Square Kilometres,3340000,-0.238992485
+2011,Average Arctic Ice Area in September ,Million Square Kilometres,3210000,-0.485984719
+2012,Average Arctic Ice Area in September ,Million Square Kilometres,2410000,-2.005936925
+2013,Average Arctic Ice Area in September ,Million Square Kilometres,3780000,0.596981229
+2014,Average Arctic Ice Area in September ,Million Square Kilometres,3740000,0.520983618
+2015,Average Arctic Ice Area in September ,Million Square Kilometres,3420000,-0.086997264
+2016,Average Arctic Ice Area in September ,Million Square Kilometres,2910000,-1.055966796
+2017,Average Arctic Ice Area in September ,Million Square Kilometres,3350000,-0.219993083
+2018,Average Arctic Ice Area in September ,Million Square Kilometres,3350000,-0.219993083
+2002,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-6.8,1.294003202
+2003,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-115.8,1.160690399
+2004,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-263.1,0.980534657
+2005,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-229.2,1.021996161
+2006,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-130.8,1.1423446
+2007,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-317.2,0.914367476
+2008,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-587.9,0.583286964
+2009,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-563.1,0.613618685
+2010,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-841.6,0.272998357
+2011,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-940.1,0.152527613
+2012,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-1074.8,-0.012217658
+2013,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-1285.1,-0.269425754
+2014,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-1495.9,-0.527245377
+2015,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-1847.6,-0.957393202
+2016,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-1769.5,-0.861872744
+2017,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-1803.2,-0.903089638
+2018,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-2148,-1.324798395
