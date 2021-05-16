@@ -59,7 +59,7 @@ class China {
         console.log(d);
         return ` 
           <span>${
-            this.showStatus !== "province" ? d.properties?.Prefecture : ""
+            this.showStatus !== "province" ? d.City_Name_en : ""
           }</span>
           <span>${d.Province_Name_en}</span>
           <span> ${d3.format(".1f")(d.value)} </span> `;
@@ -567,6 +567,7 @@ async function initData() {
         let value = cityCo2.find((v) => v.CityName === d.properties.Prefecture);
         if (value) {
           d.value = +value.C2017;
+          d.City_Name_en = value.City_Name_en;
         }
       }
 
@@ -587,14 +588,12 @@ async function initData() {
           (v) => v.Province_Name_ch === d.properties.ProvinceNa
         );
         if (province) {
-          d.Province_Name_en = province.Province_Name_en.replace(
-            "Province",
-            ""
-          ).replace("City", "").replace("Autonomous Region", "");
+          d.Province_Name_en = province.Province_Name_en.replace("Province", "")
+            .replace("City", "")
+            .replace("Autonomous Region", "");
         }
       }
     });
-
     //province
     province.features.forEach((d) => {
       let value = provinceCo2.find(
@@ -602,10 +601,9 @@ async function initData() {
       );
       if (value) {
         d.value = +value.C2017;
-        d.Province_Name_en = value.Province_Name_en.replace(
-          "Province",
-          ""
-        ).replace("City", "").replace("Autonomous Region", "");
+        d.Province_Name_en = value.Province_Name_en.replace("Province", "")
+          .replace("City", "")
+          .replace("Autonomous Region", "");
       }
     });
   }
