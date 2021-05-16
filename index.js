@@ -1,5 +1,7 @@
+//父类,初始化数据和容器
 class China {
-  constructor(id, data) {
+  constructor(id, data, title) {
+    this.title = title;
     this.id = id;
     this.city = data.city;
     this.province = data.province;
@@ -7,13 +9,14 @@ class China {
     this._tips();
     this._initProjection_city();
     this._initProjection_province();
+    this.showStatus = "province";
   }
 
   initSvg() {
     let div = d3.select(`#${this.id}`);
     this._getWH(div);
 
-    this.margin = { left: 60, right: 20, top: 30, bottom: 30 };
+    this.margin = { left: 90, right: 20, top: 30, bottom: 30 };
     this.innerW = this.width - this.margin.left - this.margin.right;
     this.innerH = this.height - this.margin.top - this.margin.bottom;
 
@@ -32,7 +35,12 @@ class China {
       .append("g")
       .attr("transform", `translate(${this.margin.left},${this.margin.top})`);
 
-    this.svg.append("text").attr("x", 20).attr("y", 20).text(this.title);
+    this.svg
+      .append("text")
+      .attr("x", 20)
+      .attr("y", -60)
+      .attr("class", "svgtitle")
+      .text("");
 
     this.DrawArea = this.ChartArea.append("g");
   }
@@ -50,7 +58,9 @@ class China {
       .html((e, d) => {
         console.log(d);
         return ` 
-          <span>${d.properties.Prefecture}</span>
+          <span>${
+            this.showStatus !== "province" ? d.properties?.Prefecture : ""
+          }</span>
           <span>${d.Province_Name_en}</span>
           <span> ${d3.format(".1f")(d.value)} </span> `;
       });
@@ -127,10 +137,10 @@ class Map extends China {
     // city
     this.ChartArea.selectAll(".cityPath")
       .data(this.city.features)
-
       .join("path")
-      .lower()
+      .raise()
       .attr("class", (d) => `cityPath  ${d.properties.Prefecture}`)
+      .attr("opacity", 0)
       .attr("d", this.city_path)
       .attr("stroke-width", 0.3)
       .attr("stroke", "white")
@@ -151,11 +161,13 @@ class Map extends China {
     this.ChartArea.selectAll(".provincePath")
       .data(this.province.features)
       .join("path")
+      .lower()
       .attr("class", (d) => `provincePath  ${d.properties.ProvinceNa}`)
       .attr("d", this.province_path)
       .attr("stroke", "black")
       .attr("stroke-width", 0.3)
       .attr("fill", (d) => this.color(d.value))
+
       .on("mouseover", this.tool_tip.show)
       .on("mouseout", this.tool_tip.hide);
   }
@@ -256,12 +268,15 @@ class Scatter extends China {
       .duration(1000)
       .style("opacity", 0.8)
       .call(d3.axisLeft(this.y).tickSize(-this.innerW));
+    //对齐文本和线
 
     this.AxisY.selectAll(".tick").select("text").attr("dy", "-0.5em");
     this.addLine();
   }
   addLine() {
-    this.line = this.DrawArea.append("line")
+    this.line = this.DrawArea.selectAll(".line")
+      .data([0])
+      .join("line")
       .transition()
       .duration(2000)
       .attr("x1", this.x(1))
@@ -269,11 +284,10 @@ class Scatter extends China {
       .attr("y1", 0)
       .attr("y2", this.innerH)
       .attr("stroke", "gray")
-      .attr('class','line')
-      ;
+      .attr("class", "line");
   }
-  removeLine(){
-    this.DrawArea.select(".line").remove()
+  removeLine() {
+    this.DrawArea.select(".line").remove();
   }
 
   removeAxis() {
@@ -305,18 +319,18 @@ class Scatter extends China {
 
   circle_to_provincePath() {
     this._circle_change_to_province_path();
-    this._capital_circle_restore()
-    this.removeLine()
+    this._capital_circle_restore();
+    this.removeLine();
   }
   _city_path_change_to_circle() {
     let city_paths = d3.selectAll(".cityPath");
 
     city_paths
       .transition()
-      .duration(3000)
-      .delay((d, i) => 100 + i * 2)
-      .style("fill-opacity", 0.7)
-      .style("pointer-events", "none")
+      .duration(1000)
+      .delay((d, i) => 10 + i * 2)
+      .style("fill-opacity", 1)
+      // .style("pointer-events", "none")
       .attrTween("d", (d, i) => {
         let city = d3.select(`.${d.properties.Prefecture}`);
         let path = city.attr("d");
@@ -335,15 +349,13 @@ class Scatter extends China {
 
     city_paths
       .transition()
-      .duration(3000)
-      .delay((d, i) => 100 + i * 2)
-      .style("fill-opacity", 0.7)
-      .style("pointer-events", "none")
+      .duration(1200)
+      .delay((d, i) => 10 + i * 2)
+      .style("fill-opacity", 1)
+      // .style("pointer-events", "none")
       .attrTween("d", (d, i) => {
-        let interpolator = flubber.fromCircle(
-          this.x(d.value),
-          this.y(d.Province_Name_en),
-          5,
+        let interpolator = flubber.interpolate(
+          d3.select(`.${d.properties.Prefecture}`).attr("d"),
           this.city_path(d)
         );
         return interpolator;
@@ -355,8 +367,8 @@ class Scatter extends China {
     city_paths
       .transition()
       .duration(3000)
-      .delay((d, i) => 100 + i * 2)
-      .style("fill-opacity", 0.3)
+      .delay((d, i) => 10 + i * 2)
+      .style("fill-opacity", 0.9)
       .style("pointer-events", "none")
       .attrTween("d", (d, i) => {
         let province = d3.select(`.${d.properties.ProvinceNa}`);
@@ -376,15 +388,13 @@ class Scatter extends China {
 
     provinces
       .transition()
-      .duration(3000)
-      .delay((d, i) => 100 + i * 2)
-      .style("fill-opacity", 0.7)
-      .style("pointer-events", "none")
+      .duration(1000)
+      .delay((d, i) => 10 + i * 2)
+      .style("fill-opacity", 1)
+      // .style("pointer-events", "none")
       .attrTween("d", (d, i) => {
-        let interpolator = flubber.fromCircle(
-          this.x(d.value),
-          this.y(d.Province_Name_en),
-          5,
+        let interpolator = flubber.interpolate(
+          d3.select(`.${d.properties.ProvinceNa}`).attr("d"),
           this.province_path(d)
         );
         return interpolator;
@@ -394,16 +404,16 @@ class Scatter extends China {
   _capital_circle_remove() {
     d3.selectAll(".capitalMap")
       .transition()
-      .duration(2000)
+      .duration(1000)
       .attr("cx", (d) => this.x(d.value))
       .attr("cy", (d) => this.y(d.Province_Name_en));
   }
   _capital_circle_restore() {
     d3.selectAll(".capitalMap")
       .transition()
-      .duration(2000)
+      .duration(1000)
       .attr("cx", (d) => this.city_path.centroid(d)[0])
-      .attr("cy", (d) => this.city_path.centroid(d)[1])
+      .attr("cy", (d) => this.city_path.centroid(d)[1]);
   }
   _addLegend() {
     this.legendArea = this.svg
@@ -457,6 +467,7 @@ class Legend {
     }
   }
 
+  //利用渐变色 做diviring
   initSvg() {
     this.svg = this.container
       .selectAll(".legend")
@@ -579,7 +590,7 @@ async function initData() {
           d.Province_Name_en = province.Province_Name_en.replace(
             "Province",
             ""
-          ).replace("City", "");
+          ).replace("City", "").replace("Autonomous Region", "");
         }
       }
     });
@@ -594,16 +605,23 @@ async function initData() {
         d.Province_Name_en = value.Province_Name_en.replace(
           "Province",
           ""
-        ).replace("City", "");
+        ).replace("City", "").replace("Autonomous Region", "");
       }
     });
   }
+
+  // city.features.forEach((d) => {
+  //   d.Province_Name_en = d.Province_Name_en.replace("Autonomous Region", "");
+  // });
   let scatter_data = d3.rollups(
     city.features,
     (d) => d3.sum(d, (v) => v.value),
-    (d) => d.Province_Name_en,
+    (d) => d.Province_Name_en.replace("Autonomous Region", ""),
     (d) => d.properties.Prefecture
   );
+  scatter_data.sort((a, b) => {
+    return d3.sum(a[1], (v) => v[1]) > d3.sum(b[1], (v) => v[1]) ? -1 : 1;
+  });
 
   return {
     city,
@@ -614,7 +632,7 @@ async function initData() {
 
 async function main() {
   let data = await initData();
-  let map = new Map("map", data);
+  let map = new Map("map", data, "我是地图");
   map.drawCity();
   map.drawProvince();
   map.drawCapital();
@@ -622,42 +640,55 @@ async function main() {
 
   let scatter = new Scatter("map", data);
 
+  //注册事件
   var scrollAction = { x: undefined, y: undefined },
     scrollDirection;
-  d3.select("#chartArea").on("scroll", (e) => {
+
+  d3.select("#chartArea").on("mouseenter", (e) => {
+    let navtop =
+      e.target.getBoundingClientRect().top -
+      d3.select(".navbar").node().getBoundingClientRect().height;
+    window.scrollBy({ top: navtop, behavior: "smooth" });
+
+    d3.select(".chart")
+      .style("position", "sticky")
+      .style("top", 0)
+      .style("left", 0);
+  });
+
+  function handelscroll(e) {
     let height = e.target.scrollHeight;
     let top = e.target.scrollTop;
 
-
+    //scroll bottom底部事件
     let chart = d3.select(".chart");
-    scrollBottom();
 
-
+    //监听鼠标滑轮向上向下
     scrollFunc();
 
     //change to city
-    if (top >= height / 4 - 100 && top <= height / 4) {
+    if (top >= height / 4 - 50 && top <= height / 4) {
       scrollDirection == "down" && province_to_city();
       scrollDirection == "up" && city_to_province();
     }
     //change to scatter
-    if (top >= (height / 4) * 2 - 100 && top <= (height / 4) * 2) {
+    if (top >= (height / 4) * 2 - 40 && top <= (height / 4) * 2) {
       scrollDirection == "down" && city_to_scatter();
       scrollDirection == "up" && scatter_to_city();
     }
     function province_to_city() {
-      d3.selectAll(".provincePath")
-        .attr("opacity", 1)
-        .transition()
-        .duration(3000)
-        .attr("opacity", 0.2);
+      // d3.selectAll(".provincePath")
+      //   .attr("opacity", 1)
+      //   .transition()
+      //   .duration(3000)
+      //   .attr("opacity", 0.2);
+
+      d3.selectAll(".cityPath").attr("opacity", 1);
+      map.showStatus = "city";
     }
     function city_to_province() {
-      d3.selectAll(".provincePath")
-        .attr("opacity", 0)
-        .transition()
-        .duration(3000)
-        .attr("opacity", 1);
+      d3.selectAll(".cityPath").attr("opacity", 0);
+      map.showStatus = "province";
     }
     function city_to_scatter() {
       scatter.cityPath_to_circle();
@@ -668,19 +699,6 @@ async function main() {
       scatter.circle_to_cityPath();
       scatter.circle_to_provincePath();
     }
-    function scrollBottom() {
-      if (height - top > window.innerHeight) {
-        // document.getElementById("chartArea").scrollTo(0,0);
-        chart.style("position", "sticky").style("top", 0).style("left", 0);
-      } else {
-        window.scrollBy({
-          top: window.innerHeight,
-          left: 0,
-          behavior: "smooth",
-        });
-      }
-    }
-
 
     function scrollFunc() {
       if (typeof scrollAction.x == "undefined") {
@@ -708,7 +726,12 @@ async function main() {
       scrollAction.y = e.target.scrollTop;
       console.log(scrollDirection);
     }
+  }
+
+  d3.select("#chartArea").on("scroll", (e) => {
+    window.requestAnimationFrame(handelscroll(e));
+    //
   });
 }
-
+//入口函数
 main();
