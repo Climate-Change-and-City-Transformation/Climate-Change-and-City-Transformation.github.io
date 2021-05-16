@@ -4,14 +4,25 @@
         }
 
         .chart {
-            width: 90%;
+            width: 98%;
             height: 75vh;
             display: grid;
             grid-template-rows: 10% 80%;
             background-color: #f4f4f4;
-            float: center;
+            float: center
 
         }
+
+        .chart1 {
+            width: 98%;
+            height: 88vh;
+            display: grid;
+            grid-template-rows: 10% 80%;
+            background-color: #f4f4f4;
+            float: center
+
+        }
+
 
         aside.toolbox1 {
           width: 100%;
@@ -33,6 +44,14 @@
         #map {
             width: 100%;
         }
+
+        #barchart {
+             top: 100px;
+      left: 200px;
+      right: 10px;
+      bottom: 10px;
+        }
+
 
 
         .domain {
@@ -78,6 +97,8 @@
 
         }
 
+
+
         .left-side-div {
             height: 100vh;
             margin-right:10px;
@@ -88,6 +109,7 @@
             width: 50%;
             margin: 0 auto;
         }
+
         .midHeader{
             background-color:gray;
             margin-top:50px;
@@ -101,6 +123,22 @@
             margin-left:200px;
             margin-right:200px;
         }
+
+        .midHeader1{
+            background-color:gray;
+            margin-top:50px;
+            margin-bottom:10px;
+            text-align: center;
+            color:rgb(255, 255, 255);
+            font-size:25px;
+            font-family:Verdana;
+            vertical-align:middle;
+            font-weight:bold;
+            margin-left:5%;
+            margin-right:5%;
+        }
+
+
         .text{
             font-size: 20px;
             text-align: center;
@@ -131,7 +169,7 @@
             background-color: #f1f1f1;
             border-left: 2px solid gray;
             font-family:cursive;
-            padding: 5px;
+            padding: 10%;
         }
 
         .left-side-header{
@@ -142,11 +180,16 @@
             font-family:cursive;
             font-weight:bold;
         }
-        .left-text {
-            background-color: #f1f1f1;
-            border-right: 2px solid gray;
+       
+       .right-text1 {
+       	    font-size: 20px;
+            font-weight:lighter;
             font-family:cursive;
-            padding: 5px;
+            background-color: transparent;
+            border-left: 2px transparent;
+            font-family:cursive;
+            padding: 10%;
+            text-align: justify;
         }
 
         #chartArea {
@@ -157,7 +200,46 @@
             overflow-x: hidden;
             width: 100%;
             padding-right: 18px;
+            padding-left: 35px;
+
         }
+
+
+         #chartArea1 {
+            display: grid;
+            grid-template-columns: 25% 70% ;
+            height: 99vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+            padding-right: 18px;
+            padding-left: 35px;
+        }
+
+        #chartArea2 {
+            display: grid;
+            grid-template-columns: 50% 35% ;
+            height: 99vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+            padding-right: 18px;
+            padding-left: 35px;
+        }
+
+        #chartArea3 {
+            display: grid;
+            grid-template-columns: 50% 45%;
+            height: 90%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+            padding-right: 5px;
+            padding-left: 35px;
+            padding-top: 0px
+
+        }
+
         #container1 {
             height: 100%;
             width: 100%;
@@ -216,10 +298,11 @@
       font-variant-numeric: proportional-nums;
       opacity: 0.3
     }
+
     .playpauseBtn {
       position:relative;
       transition: .5s ease;
-      top: -565px;
+      top: -570px;
       left: 0px;
       right: -0px;
       bottom: 10px;
@@ -240,7 +323,7 @@
       cursor: pointer;
       width: 600px;
       stroke: transparent;
-      top: -600px;
+      top: -930%;
       left: 50px;
       right: -320px;
       bottom: 0px;
@@ -248,7 +331,7 @@
 
     .slider {
       -webkit-appearance: none;
-      width: 580px;
+      width: 540px;
       height: 20px;
       background: #d3d3d3;
       outline: none;
