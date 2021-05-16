@@ -1,0 +1,410 @@
+
+  * {
+            margin: 0;
+        }
+
+        .chart {
+            width: 98%;
+            height: 75vh;
+            display: grid;
+            grid-template-rows: 10% 80%;
+            background-color: #f4f4f4;
+            float: center
+
+        }
+
+        .chart1 {
+            width: 98%;
+            height: 88vh;
+            display: grid;
+            grid-template-rows: 10% 80%;
+            background-color: #f4f4f4;
+            float: center
+
+        }
+
+
+        aside.toolbox1 {
+          width: 100%;
+            height: 90vh;
+            top:10px;
+            bottom:80px;
+            left:10px;
+        }
+
+       #serieDiv {
+            width: 100%;
+        }
+
+
+       #bubbleDiv {
+            width: 100%;
+        }
+
+        #map {
+            width: 100%;
+        }
+
+        #barchart {
+             top: 100px;
+      left: 200px;
+      right: 10px;
+      bottom: 10px;
+        }
+
+
+
+        .domain {
+            stroke: lightgray;
+        }
+
+        body {
+            margin: 0;
+            box-sizing: content-box;
+
+        }
+
+        .year {
+      font-size: 50px;
+      font-family: fantasy;
+      font-variant-numeric: proportional-nums;
+      opacity: 0.3;
+          }
+
+        .title {
+            font-size: 4rem;
+            text-align: center;
+            font-weight:lighter;
+            font-family:cursive;
+            color:rgb(0, 0, 0);
+        }
+
+
+        text {
+            fill: gray
+
+        }
+
+
+
+        g line {
+            stroke: lightgray;
+        }
+
+        .right-side-div {
+            height: 100vh;
+            margin-left:10px;
+
+        }
+
+
+
+        .left-side-div {
+            height: 100vh;
+            margin-right:10px;
+
+        }
+
+        .middleThings{
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        .midHeader{
+            background-color:gray;
+            margin-top:50px;
+            margin-bottom:10px;
+            text-align: center;
+            color:rgb(255, 255, 255);
+            font-size:25px;
+            font-family:Verdana;
+            vertical-align:middle;
+            font-weight:bold;
+            margin-left:200px;
+            margin-right:200px;
+        }
+
+        .midHeader1{
+            background-color:gray;
+            margin-top:50px;
+            margin-bottom:10px;
+            text-align: center;
+            color:rgb(255, 255, 255);
+            font-size:25px;
+            font-family:Verdana;
+            vertical-align:middle;
+            font-weight:bold;
+            margin-left:5%;
+            margin-right:5%;
+        }
+
+
+        .text{
+            font-size: 20px;
+            text-align: center;
+            font-weight:lighter;
+            font-family:cursive;
+            margin-top:35px;
+            margin-bottom:35px;
+        }
+        .mid-text{
+            font-size: 20px;
+            font-weight:lighter;
+            font-family:cursive;
+            margin-top:35px;
+            margin-bottom:35px;
+            margin-left:10px;
+            width:100%;
+        }
+
+        .right-side-header{
+            background-color:gray;
+            margin-bottom:10px;
+            color:rgb(255, 255, 255);
+            font-size:15px;
+            font-family:cursive;
+            font-weight:bold;
+        }
+        .right-text {
+            background-color: #f1f1f1;
+            border-left: 2px solid gray;
+            font-family:cursive;
+            padding: 10%;
+        }
+
+        .left-side-header{
+            background-color:gray;
+            margin-bottom:10px;
+            color:rgb(255, 255, 255);
+            font-size:15px;
+            font-family:cursive;
+            font-weight:bold;
+        }
+       
+       .right-text1 {
+       	    font-size: 20px;
+            font-weight:lighter;
+            font-family:cursive;
+            background-color: transparent;
+            border-left: 2px transparent;
+            font-family:cursive;
+            padding: 10%;
+            text-align: justify;
+        }
+
+        #chartArea {
+            display: grid;
+            grid-template-columns: 70% 25%;
+            height: 99vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+            padding-right: 18px;
+            padding-left: 35px;
+
+        }
+
+
+         #chartArea1 {
+            display: grid;
+            grid-template-columns: 25% 70% ;
+            height: 99vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+            padding-right: 18px;
+            padding-left: 35px;
+        }
+
+        #chartArea2 {
+            display: grid;
+            grid-template-columns: 50% 35% ;
+            height: 99vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+            padding-right: 18px;
+            padding-left: 35px;
+        }
+
+        #chartArea3 {
+            display: grid;
+            grid-template-columns: 50% 45%;
+            height: 90%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+            padding-right: 5px;
+            padding-left: 35px;
+            padding-top: 0px
+
+        }
+
+        #container1 {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+
+        }
+
+
+        .rough-box {
+            max-width: 500px;
+            margin: 0 auto;
+            margin-bottom:35px;
+            padding: 20px;
+            color: rgb(255, 255, 255);
+            background-image: paint(rough-painter);
+        }
+        .rough-box {
+            --rough-border-width: 3;
+            --rough-fill: rgb(194, 188, 188);
+            --rough-fill-weight: 9;
+            --rough-fill-style: zigzag;
+        }
+        .rough-box-title {
+            margin: 0 auto;
+            margin-top:35px;
+            margin-bottom:35px;
+            padding: 20px;
+            color: rgb(255, 255, 255);
+            background-image: paint(rough-painter);
+        }
+        .rough-box-title {
+            --rough-border-width: 3;
+            --rough-fill: rgb(219, 219, 219); 
+            --rough-fill-weight: 9;
+            --rough-fill-style: zigzag;
+        }
+     
+
+    .year {
+      font-size: 50px;
+      font-family: fantasy;
+      font-variant-numeric: proportional-nums;
+      opacity: 0.3;
+          }
+
+
+   .districts {
+                fill: rgb(199,199,199);
+                stroke: #FFFFFF;
+                stroke-width: 0.5px;
+            }
+            
+    .country {
+      font-size: 50px;
+      font-family: monospace;
+      font-variant-numeric: proportional-nums;
+      opacity: 0.3
+    }
+
+    .playpauseBtn {
+      position:relative;
+      transition: .5s ease;
+      top: -570px;
+      left: 0px;
+      right: -0px;
+      bottom: 10px;
+      cursor: pointer;
+    }
+
+    .legendBtn {
+      position:relative;
+      transition: .5s ease;
+      top: 100px;
+      left: 200px;
+      right: 10px;
+      bottom: 10px;
+    }
+
+    .slider {
+      position:relative;
+      cursor: pointer;
+      width: 600px;
+      stroke: transparent;
+      top: -930%;
+      left: 50px;
+      right: -320px;
+      bottom: 0px;
+    }
+
+    .slider {
+      -webkit-appearance: none;
+      width: 540px;
+      height: 20px;
+      background: #d3d3d3;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+
+    .slider:hover {
+      opacity: 1;
+    }
+
+  
+
+    svg {
+ font: 16px"Avenir";
+
+}
+  
+  .tooltip {
+  position: fixed;
+  padding: 7px;
+  font-size: 0.9em;
+  pointer-events: none;
+  background: #D9DBE6;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  -moz-box-shadow:    3px 3px 10px 0px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.25);
+  box-shadow:         3px 3px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+.tooltip p {
+  margin: 0;
+  padding: 0;
+}
+
+.tooltip table {
+  margin: 0;
+  padding: 0;
+  border-collapse: collapse;
+}
+
+  ul.navbar{
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index:2;
+
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      
+      background-color: #202020;
+      
+  }
+
+  li{
+      float: left;
+  }
+  ul.navbar li a{
+      display: block;
+      color: rgb(255, 255, 255);
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-family:cursive;
+  }
+  ul.navbar li a:hover{
+    background-color: rgb(153, 153, 153);
+  }
+  .active {
+      background-color: #005ce6;
+  }

@@ -9,18 +9,57 @@
 <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
 <script src="openlayers/ol.js"></script>
 
-<style>  
-body {
-            margin: 0;
-            
-            z-index:1;
-        }
+<style>
+
+#map {
+
+} 
+
+#slider_div {
+  z-index: 10;  
+  position: absolute;  
+  right: 0;  
+  top: 45px;  
+  width: 400px;
+  padding-left: 10px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+#level {
+  display: inline-block;
+  width: 200px;
+  vertical-align: text-bottom;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="slider_div">
+<h3>Simulation of sea level rise</h3>
+Range: <select id="range_select" onchange="range_select_change(this);"></select>
+<br>
+<svg id="levelslider" xmlns="http://www.w3.org/2000/svg" version="1.1" 
+width="350" height="500">
+</svg>
+</div>
+
+<div id="map" class="map"></div>
+
+<div id="attributions">
+Sources: 
+<a href="https://maps.wikimedia.org/">map</a>, 
+<a href="https://aws.amazon.com/public-datasets/terrain/">terrain</a>,
+<a href="https://openlayers.org/en/latest/examples/sea-level.html">openlayers</a>
+</div>
+<style>
   /* Top navigation style */
   ul.navbar{
       position: fixed;
       top: 0;
       width: 100%;
-      z-index:3;
+      z-index:2;
 
       list-style-type: none;
       margin: 0;
@@ -49,39 +88,7 @@ body {
       background-color: #005ce6;
   }
 </style>
-<style>
-     * {
-            margin: 0;
-        }
-        body {
-            margin: 0;
-            z-index:1;
-        }
-
-#map {
-
-} 
-
-#slider_div {
-  z-index: 2;  
-  position: absolute;  
-  right: 0;  
-  top: 50px;  
-  width: 400px;
-  padding-left: 10px;
-  background: rgba(255, 255, 255, 0.9);
-}
-
-#level {
-  display: inline-block;
-  width: 200px;
-  vertical-align: text-bottom;
-}
-
-</style>
-</head>
-
-<body>
+    
   <!-- Top navigation div -->
   <ul class="navbar">
     <li style="float:right"><a href="index.html">Cities Transformation</a></li>
@@ -90,31 +97,10 @@ body {
     <li><a href="China.html">China</a></li>
     <li><a href="India.html">India</a></li>
     <li><a class="active" href="Future Impact.html">Future Impact</a></li>
-  </ul>
-
-<div id="slider_div">
-<h3>Simulation of sea level rise</h3>
-Range: <select id="range_select" onchange="range_select_change(this);"></select>
-<br>
-<svg id="levelslider" xmlns="http://www.w3.org/2000/svg" version="1.1" 
-width="350" height="500">
-</svg>
-</div>
-
-<div id="map" class="map"></div>
-
-<div id="attributions">
-Sources: 
-<a href="https://maps.wikimedia.org/">map</a>, 
-<a href="https://aws.amazon.com/public-datasets/terrain/">terrain</a>,
-<a href="https://openlayers.org/en/latest/examples/sea-level.html">openlayers</a>
-</div>
-
+</ul>
 <script>
-
 ///////////////////////////////////////////////////////////////////////////////
 // Global vars
-
 var svgNS_ = 'http://www.w3.org/2000/svg';
 
 var profiles_ = [
