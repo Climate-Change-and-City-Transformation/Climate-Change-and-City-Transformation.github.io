@@ -18,7 +18,7 @@
         }
         .chart {
             width: 100%;
-            height: 90vh;
+            height: 100vh;
             display: grid;
             grid-template-rows: 10% 80%;
             background-color: #f4f4f4;
@@ -43,13 +43,22 @@
             box-sizing: content-box;
             z-index:1;
         }
-
         .title {
             font-size: 4rem;
             text-align: center;
             font-weight:lighter;
             font-family:cursive;
             color:rgb(0, 0, 0);
+        }
+        
+        .maptitle{
+            font-size: 3rem;
+            text-align: center;
+            font-weight: lighter;
+            font-family: cursive;
+            color: rgb(0, 0, 0);
+            margin-left: 10%;
+
         }
 
         text {
@@ -103,7 +112,7 @@
         }
 
         .right-side-header{
-            background-color:gray;
+            background-color:#314563;
             margin-bottom:10px;
             color:rgb(255, 255, 255);
             font-size:15px;
@@ -183,12 +192,12 @@
             overflow: hidden;
             
             background-color: #202020;
-            
         }
 
         li{
             float: left;
         }
+
         ul.navbar li a{
             display: block;
             color: rgb(255, 255, 255);
@@ -230,11 +239,16 @@
             <h2 class='text'>
                 By <a href="https://github.com/xudong-zh">Xudong Zhang</a>
             </h2>
-            <p class="text">
+            <p class="mid-text">
                 China is one of the largest carbon dioxide emission countries. In 2017, it released 9.8 billion tons carbon dioxide. 
-                Most of China's carbon dioxide emissions come from fossil fuels, esopecially from the coal. To look deep into the current 
-                emission geographical pattern at the level of country or city, and understand how it transformed from 2000 to 2016, we first 
-                need to focus on how carbon dioxide emission distributed in China.
+                Most of China's carbon dioxide emissions come from fossil fuels, esopecially from the coal (70% of total energy comes from
+                coal). 
+            </p>
+            <p class="mid-text">
+                To look deep into the relationships among carbon dioxide emission, economic structures, geographical elements and 
+                population in China, we first need to understand current emission pattern at the level of province or city, and how it 
+                transformed from 2000 to 2016 (when the development of economy in China was relatively higher than any period since 1978).
+                This analysis could give us a initial but relatively detailed cognition of where contributed more emission than other places.
             </p>
             <div class="rough-box">
                 <p class="text">
@@ -247,8 +261,8 @@
 
             <section id="chartArea">
                 <section class="chart">
-                    <div class="title">
-
+                    <div class="maptitle">
+                        <h5>The Carbon Dioxide Emission Map of China, 2017</h5>
                     </div>
                     <div id="map">
 
@@ -262,60 +276,63 @@
                     <div class="right-side-div">
                         <div class="right-side-header" >
                             <span style="margin-left:5px;">
-                                Introduction
+                                Introduction to distribution map
                             </span>
                         </div>
                         <p class="right-text">
-                            If you’re familiar with the geography and economics of Europe, you might know that the more
-                            economically developed countries are situated in western and northern Europe. On the map,
-                            more
-                            developed countries are shaded in green and less developed countries are in shades of pink,
-                            denoting
-                            each country’s GDP. Each color corresponds to a threshold set by the EU, which we’ll explain
-                            in
-                            subsequent sections.
-                        </p>
-                        
-                        
+                            In this example, all the original emission data was divided by the average emission volume.
+                            This means that, on the map, the regions emitting more carbon dioxide than average(above 1) are shaded in pink 
+                            and less emitting regions (below 1)are coloured by green. You can move your mouse over each area to see the 
+                            specific emission ratio.
+                        </p>   
                     </div>
-                    <div class="right-side-div">
-                        <p class="right-text">
-                            If you’re familiar with the geography and economics of Europe, you might know that the more
-                            economically developed countries are situated in western and northern Europe. On the map,
-                            more
-                            developed countries are shaded in green and less developed countries are in shades of pink,
-                            denoting
-                            each country’s GDP. Each color corresponds to a threshold set by the EU, which we’ll explain
-                            in
-                            subsequent sections.
-                        </p>
-                    </div>
-                    <div class="right-side-div">
-                        <p class="right-text">
-                            If you’re familiar with the geography and economics of Europe, you might know that the more
-                            economically developed countries are situated in western and northern Europe. On the map,
-                            more
-                            developed countries are shaded in green and less developed countries are in shades of pink,
-                            denoting
-                            each country’s GDP. Each color corresponds to a threshold set by the EU, which we’ll explain
-                            in
-                            subsequent sections.
-                        </p>
-                    </div>
-                    <div class="right-side-div">
-                        <p class="right-text">
-                            If you’re familiar with the geography and economics of Europe, you might know that the more
-                            economically developed countries are situated in western and northern Europe. On the map,
-                            more
-                            developed countries are shaded in green and less developed countries are in shades of pink,
-                            denoting
-                            each country’s GDP. Each color corresponds to a threshold set by the EU, which we’ll explain
-                            in
-                            subsequent sections.
-                        </p>
-                    </div>
-             
 
+                    <div class="right-side-div">
+                        <div class="right-side-header" >
+                            <span style="margin-left:5px;">
+                                Province Map: Clearly Spatial Agglomeration
+                            </span>
+                        </div>
+                        <p class="right-text">
+                            In China, the most developed regions and cities are located in the south or east of China.
+                            From this province boundary map, the more developed provinces, such as Guangdong province, Shanghai, produced
+                            relatively more carbon dioxide annually. But some provinces(Inner Mongolia, Shanxi, Heibei,) that 
+                            located in the North of China, still contain much higher emission level, compared to the average level.
+                        </p>
+                    </div>
+
+                    <div class="right-side-div">
+                        <div class="right-side-header" >
+                            <span style="margin-left:5px;">
+                                City Map: Agglomeration Mixed with Sporadic Distribution
+                            </span>
+                        </div>
+                        <p class="right-text">
+                            This is cities' boundary map of China. It was coloured by the ratio data, like the province map.It gives us 
+                            more clear view of which cities contribute more carbon dioxide than others. The cities that emit more carbon dioxide 
+                            than the average level aggregated in the North and Eastern coastal region of China. Some core cities(the cities 
+                            that contain the circles, these cities usually have more access to various resources in the provinces to which they belong)
+                            make more contribution to emission, compared to the other cities in the same provinces relatively, and a sporadic distribution 
+                            pattern emerged.
+
+                        </p>
+                    </div>
+
+                    <div class="right-side-div">
+                        <div class="right-side-header" >
+                            <span style="margin-left:5px;">
+                                Scatter Chart: Where are spatial elements in Data World?
+                            </span>
+                        </div>
+                        <p class="right-text">
+                            The animation combined the shape transformation of cities, provinces and their core cities into one chart.The X axis is the 
+                            the ratio of carbon dioxide emission. The Y axis is province.The shapes in the chart is positioned by their ratio of carbon 
+                            dioxide emission. The small, coloured circles denote the cities, and circles without colour are core cities.The bigger are 
+                            provinces. As we can see, most of the core cities distributed at the right part of the line, which means that these cities 
+                            emitted more carbon dioxide than others. 9 provinces (the bigger circles) are above the average level. Among them, the North 
+                            provinces cover 66.7% of total(Shandong, Hebei, Inner Mongolia, Henan, Liaoning, Shanxi).
+                        </p>
+                    </div>
                 </section>
             </section>
         </div>
@@ -329,11 +346,10 @@
             </div>
             <div class="mid-text">
             <p>
-                If you’re familiar with the geography and economics of Europe, you might know that the more
-                economically developed countries are situated in western and northern Europe. On the map, more
-                developed countries are shaded in green and less developed countries are in shades of pink, denoting
-                each country’s GDP. Each color corresponds to a threshold set by the EU, which we’ll explain in
-                subsequent sections.
+                The carbon dioxide emission pattern has been displayed above. Next, we want to know how this pattern 
+                came into being.Based on teh above analysis, we know that core cities in China made a more contribution 
+                to the emission of carbon dioxide.And also based on the original data we could collected, we will focus 
+                on 50 cities in the China. Most of them are the core cities of China, which cover .
             </p>
             </div>
             <div class="rough-box">
