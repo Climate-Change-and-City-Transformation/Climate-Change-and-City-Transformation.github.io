@@ -14,327 +14,11 @@
     <script src="http://d3js.org/d3.v4.js"></script>
     <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
      <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-  
-
-    
-<style>
-        * {
-            margin: 0;
-        }
-
-        .chart {
-            width: 100%;
-            height: 90vh;
-            display: grid;
-            grid-template-rows: 10% 80%;
-            background-color: #f4f4f4;
-
-        }
-
-        aside.toolbox1 {
-          width: 100%;
-            height: 90vh;
-            top:10px;
-            bottom:80px;
-            left:10px;
-        }
-
-       #serieDiv {
-            width: 100%;
-        }
-
-
-       #bubbleDiv {
-            width: 100%;
-        }
-
-        #map {
-            width: 100%;
-        }
-
-
-        .domain {
-            stroke: lightgray;
-        }
-
-        body {
-            margin: 0;
-            z-index:1;
-        }
-
-        .year {
-      font-size: 50px;
-      font-family: fantasy;
-      font-variant-numeric: proportional-nums;
-      opacity: 0.3;
-          }
-
-        .title {
-            font-size: 4rem;
-            text-align: center;
-            font-weight:lighter;
-            font-family:cursive;
-            color:rgb(0, 0, 0);
-        }
-
-
-        text {
-            fill: gray
-
-        }
-
-
-
-        g line {
-            stroke: lightgray;
-        }
-
-        .right-side-div {
-            height: 100vh;
-            margin-left:10px;
-
-        }
-        .middleThings{
-            width: 50%;
-            margin: 0 auto;
-        }
-        .midHeader{
-            background-color:gray;
-            margin-top:50px;
-            margin-bottom:10px;
-            text-align: center;
-            color:rgb(255, 255, 255);
-            font-size:25px;
-            font-family:Verdana;
-            vertical-align:middle;
-            font-weight:bold;
-            margin-left:200px;
-            margin-right:200px;
-        }
-        .text{
-            font-size: 20px;
-            text-align: center;
-            font-weight:lighter;
-            font-family:cursive;
-            margin-top:35px;
-            margin-bottom:35px;
-        }
-        .mid-text{
-            font-size: 20px;
-            font-weight:lighter;
-            font-family:cursive;
-            margin-top:35px;
-            margin-bottom:35px;
-            margin-left:10px;
-            width:100%;
-        }
-
-        .right-side-header{
-            background-color:gray;
-            margin-bottom:10px;
-            color:rgb(255, 255, 255);
-            font-size:15px;
-            font-family:cursive;
-            font-weight:bold;
-        }
-        .right-text {
-            background-color: #f1f1f1;
-            border-left: 2px solid gray;
-            font-family:cursive;
-            padding: 5px;
-        }
-
-        #chartArea {
-            display: grid;
-            grid-template-columns: 70% 25%;
-            height: 99vh;
-            overflow-y: auto;
-            overflow-x: hidden;
-            width: 100%;
-            padding-right: 18px;
-        }
-        #container1 {
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-
-        }
-
-        .flourish-embed{
-            text-align: center;
-            width: 100%;
-        }
-
-        .rough-box {
-            max-width: 500px;
-            margin: 0 auto;
-            margin-bottom:35px;
-            padding: 20px;
-            color: rgb(255, 255, 255);
-            background-image: paint(rough-painter);
-        }
-        .rough-box {
-            --rough-border-width: 3;
-            --rough-fill: rgb(194, 188, 188);
-            --rough-fill-weight: 9;
-            --rough-fill-style: zigzag;
-        }
-        .rough-box-title {
-            margin: 0 auto;
-            margin-top:35px;
-            margin-bottom:35px;
-            padding: 20px;
-            color: rgb(255, 255, 255);
-            background-image: paint(rough-painter);
-        }
-        .rough-box-title {
-            --rough-border-width: 3;
-            --rough-fill: rgb(219, 219, 219); 
-            --rough-fill-weight: 9;
-            --rough-fill-style: zigzag;
-        }
-     
-
-    .year {
-      font-size: 50px;
-      font-family: fantasy;
-      font-variant-numeric: proportional-nums;
-      opacity: 0.3;
-          }
-
-
-   .districts {
-                fill: rgb(199,199,199);
-                stroke: #FFFFFF;
-                stroke-width: 0.5px;
-            }
-            
-    .country {
-      font-size: 50px;
-      font-family: monospace;
-      font-variant-numeric: proportional-nums;
-      opacity: 0.3
-    }
-    .playpauseBtn {
-      position:relative;
-      transition: .5s ease;
-      top: -565px;
-      left: 0px;
-      right: -0px;
-      bottom: 10px;
-      cursor: pointer;
-    }
-
-    .legendBtn {
-      position:relative;
-      transition: .5s ease;
-      top: 100px;
-      left: 200px;
-      right: 10px;
-      bottom: 10px;
-    }
-
-    .slider {
-      position:relative;
-      cursor: pointer;
-      width: 600px;
-      stroke: transparent;
-      top: -600px;
-      left: 50px;
-      right: -320px;
-      bottom: 0px;
-    }
-
-    .slider {
-      -webkit-appearance: none;
-      width: 580px;
-      height: 20px;
-      background: #d3d3d3;
-      outline: none;
-      opacity: 0.7;
-      -webkit-transition: .2s;
-      transition: opacity .2s;
-    }
-
-    .slider:hover {
-      opacity: 1;
-    }
-
-  
-
-    svg {
- font: 16px"Avenir";
-
-}
-  
-  .tooltip {
-  position: fixed;
-  padding: 7px;
-  font-size: 0.9em;
-  pointer-events: none;
-  background: #D9DBE6;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-
-  -moz-box-shadow:    3px 3px 10px 0px rgba(0, 0, 0, 0.25);
-  -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.25);
-  box-shadow:         3px 3px 10px 0px rgba(0, 0, 0, 0.25);
-}
-
-.tooltip p {
-  margin: 0;
-  padding: 0;
-}
-
-.tooltip table {
-  margin: 0;
-  padding: 0;
-  border-collapse: collapse;
-}
-
-
-</style>  
-<style>
-  /* Top navigation style */
-  ul.navbar{
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index:2;
-
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      
-      background-color: #202020;
-      
-  }
-
-  li{
-      float: left;
-  }
-  ul.navbar li a{
-      display: block;
-      color: rgb(255, 255, 255);
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-      font-family:cursive;
-  }
-  ul.navbar li a:hover{
-    background-color: rgb(153, 153, 153);
-  }
-  .active {
-      background-color: #005ce6;
-  }
-</style>
-    
-</head>
+      <link rel="stylesheet" href="./js/india_style.css">
+ </head>
 
 
 <body>
-  <!-- Top navigation div -->
   <ul class="navbar">
     <li style="float:right"><a href="index.html">Cities Transformation</a></li>
     <li><a href="About.html">About</a></li>
@@ -343,63 +27,105 @@
     <li><a class="active" href="India.html">India</a></li>
     <li><a href="Future Impact.html">Future Impact</a></li>
 </ul>
+
+
+
+
 <article>
 
 
-  <div id="container1">
-     <div class="midHeader"><span>Top 10 Countries by Electricity domestic consumption</span></div>
-<!-- Animation play pause control elements -->  
 <div class="middleThings">
-            <div class="mid-text">
-                <p>
-                    Among the countries with the most electricity domestic consumption, India held third place in 2019 following an increasing tendency.
-                </p>
+            <div class="rough-box-title">
+              <br><br><br><br><br><br><br>
+
+                <h1 class="title">
+                   The impact of climate change in India
+                </h1>
             </div>
+            
+         <!-- 
+            <h2 class='text'>
+                By <a href="https://github.com/xudong-zh">Xudong Zhang</a>
+            </h2>
+          -->
+                        <br><br><br><br><br>
+
+            <p class="text">
+                 One of the most affected countries which are currently facing the consequences of this environmental issue is India. With a large population and a high level of poverty, this country has been hit in different sectors of its economy; and it is on track to meet the targets of the Paris Agreement in Climate Change.
+            </p>
+            
         </div>
-        <div id="serieDiv"></div>
-        <br>
-    </div>
 
 
-  <div id="container1">
-     <div class="midHeader"><span>Natural disasters in India. 2000 - 2020</span></div>
-<!-- Animation play pause control elements -->  
-<div class="middleThings">
-            <div class="mid-text">
-                <p>
-                    The natural disasters which have provoked more deaths in India in the last 20 years were earthquakes, floods, extreme temperatures, storms and landslides.
-                </p>
-            </div>
-        </div>
-        <div id="bubbleDiv"></div>
-      <br><br>
-    </div>
-
-
-  <div id="container1">
-     <div class="midHeader"><span>India: Temperature variations (ºC) </span></div>
-     <br>
-<!-- Animation play pause control elements -->  
-<div class="middleThings">
-            <div class="mid-text">
-                <p>
-                    The natural disasters which have provoked more deaths in India in the last 20 years were earthquakes, floods, extreme temperatures, storms and landslides.
-                </p>
-            </div>
-        </div>
-        <div id="barchart"></div>
-      <br>
-    </div>
-
-
+  <br><br><br>
 
 <div id="container1">
-     <div class="midHeader"><span>Average temperatures in India's cities</span></div>
-<!-- Animation play pause control elements -->  
+     <div class="midHeader"><span>Top 10 Countries by Electricity domestic consumption</span></div>
+  <br>
 <section id="chartArea">
    <section class="chart">
             <div class="title"></div>
+            <div id = "serieDiv"></div>
+   </section>
+
+    <section>
+            <div class="right-side-div">
+             <div class="right-side-header" >
+              <!--<span style="margin-left:5px;">Introduction</span> -->
+                </div>
+                <br><br><br><br><br><br>
+                 <p class="right-text1">
+                            Among the countries with the most electricity domestic consumption, India held third place in 2019 following an increasing tendency.
+                   </p>
+                    </div>
+     </section>
+</section> 
+</div>
+
+
+<div id="container1">
+     <div class="midHeader"><span>Natural disasters in India. 2000 - 2020</span></div>
+  <br>
+<section id="chartArea1">
+
+
+    <section>
+            <div class="right-side-div">
+             <div class="right-side-header" >
+              <!--<span style="margin-left:5px;">Introduction</span> -->
+                </div>
+                <br><br><br><br><br><br>
+                 <p class="right-text1">
+                          It is expected that the country experiences mortal heatwaves, especially in the city of Calcutta, where a similar event killed more than two thousand people in 2015.
+                           
+                   </p>
+                    </div>
+     </section>
+
+        <section class="chart">
+            <div class="title"></div>
+            <div id = "bubbleDiv"></div>
+   </section>
+
+
+</section> 
+</div>
+
+
+
+<!--<div class="midHeader"><span>Average temperatures in India's cities</span></div> -->  
+
+
+<br><br>
+<div id="container1">
+     
+<!-- Animation play pause control elements -->  
+<section id="chartArea3">
+   
+   <section class="chart1">
+            <div class="title"></div>
             <div id = "map"></div>
+
            <aside id="toolbox">
              <div class="playpauseBtn">
                <button type="submit" style="background-color:transparent; border-color:transparent;" id="playpauseBtn";>
@@ -408,20 +134,21 @@
             </div>
               <!-- creating a slider to select individual year -->
              <div class="slider" >
-                <input type="range" id="year" value="1" min="1" max="21" oninput="sliderValue(this.value)" style="width: 570px; border-color:black;" ;> 
+                <input type="range" id="year" value="1" min="1" max="21" oninput="sliderValue(this.value)" style="width: 540px; border-color:black;"> 
              </div>
              </aside>
     </section>
 
     <section>
             <div class="right-side-div">
-             <div class="right-side-header" >
-              <!--<span style="margin-left:5px;">Introduction</span> -->
-                </div>
-                 <p class="right-text">
-                            The natural disasters which have provoked more deaths in India in the last 20 years were earthquakes, floods, extreme temperatures, storms and landslides.
+              <div class="midHeader1"><span>Average temperatures in India's cities</span></div>  
+             <!--<div class="right-side-header" >  -->
+                <p class="right-text1">
+                          According to the Intergovernamental Panel on Climate Change (IPCC), the ascent of 1.5ºC in the global average temperature could aggravate even more the current situation of the country.  
+                           
                    </p>
-                    </div>
+                <div id="barchart"></div>
+              </div>
      </section>
 </section> 
 </div>
@@ -430,6 +157,8 @@
 
     <script>
         
+
+
         
 
      ////////////////////////////////////////////////////
@@ -458,8 +187,8 @@ var data = [trace1,trace2,trace3,trace4,trace5,trace6,trace7,trace8,trace9,trace
 var layout = {
   autosize: true,
     margin: {
-    l: 100,
-    r: 20,
+    l: 70,
+    r: 70,
     b: 10,
     t: 10,
   },
@@ -614,13 +343,13 @@ Plotly.newPlot('bubbleDiv', data, layout)
 
           
       // Define margins
-      var margin = {top: 10, right:10, bottom: 10, left: 0};
+      var margin = {top: 0, right:10, bottom: 0, left: 0};
 
       //Width and height
-      var outer_width  = 700;
-      var outer_height = 500;
-      var svg_width = window.innerWidth - margin.left - margin.right - 400;
-      var svg_height = window.innerHeight - margin.top - margin.bottom - 200;
+      var outer_width  = 400;
+      var outer_height = 300;
+      var svg_width = window.innerWidth  - 200;
+      var svg_height = window.innerHeight - 100;
       var playpauseFlag = 0
 
 
@@ -639,8 +368,8 @@ Plotly.newPlot('bubbleDiv', data, layout)
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
             var projection = d3.geo.mercator() // mercator makes it easy to center on specific lat/long
-                .scale(1200)
-                .center([90, 23]); // long, lat of NYC
+                .scale(1100)
+                .center([91, 24]); // long, lat of NYC
                 //.translate([ (outer_width / 2), outer_height / 2])
                 //.precision(.1);
 
@@ -677,8 +406,8 @@ Plotly.newPlot('bubbleDiv', data, layout)
 
       //Initialization of display_year text floating in the graph
       svg.append("text")
-         .attr("y", svg_height / 15)
-         .attr("x", svg_width / 1.4)
+         .attr("y", svg_height / 9)
+         .attr("x", svg_width / 3)
          .style("text-anchor", "start")
          .attr("id", "year")
          .attr("class", "year")
@@ -744,8 +473,8 @@ Plotly.newPlot('bubbleDiv', data, layout)
 
        // Text label for Year in background
        svg.select("#year")
-           .attr("y", svg_height/15 )
-           .attr("x", svg_width/1.4 )
+           .attr("y", svg_height/9 )
+           .attr("x", svg_width/3 )
            .style("text-anchor", "start")
            .attr("class", "year")
          .text(yearScale(display_year));
@@ -936,7 +665,12 @@ var trace1 = {
 var data = [trace1];
 
 var layout = {
-  title: 'Temperature variations in India (baseline 2000)',
+  title: {
+    text: 'Temperature variations in India (baseline 2000)',
+    font: {
+        size: 17,
+        color: '#212121'
+      }},
   autosize: true,
     
   paper_bgcolor: 'transparent',
