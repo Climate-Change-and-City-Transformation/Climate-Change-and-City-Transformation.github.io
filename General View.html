@@ -12,15 +12,15 @@
             margin: 0;
         }
         .my_dataviz_tooltip {
-            width: 100%;
-            height: 100%;
+            width: 80%;
+            height: 80%;
             background-color: #f4f4f4;
 
         }
 
         .my_dataviz_smallmultiples {
-            width: fit-content;
-            height: fit-content;
+            width: 80%;
+            height: 80%;
             background-color: #f4f4f4;
 
         }
@@ -44,7 +44,7 @@
             font-size: 4rem;
             text-align: center;
             font-weight:lighter;
-            font-family:verdana;
+            font-family:'Montserrat',sans-serif;
             color:rgb(0, 0, 0);
         }
 
@@ -73,7 +73,7 @@
             text-align: center;
             color:rgb(255, 255, 255);
             font-size:25px;
-            font-family:Verdana;
+            font-family:'Montserrat',sans-serif;
             vertical-align:middle;
             font-weight:bold;
             margin-left:10px;
@@ -82,7 +82,7 @@
             font-size: 15px;
             text-align: left;
             font-weight:lighter;
-            font-family:verdana;
+            font-family:'Montserrat',sans-serif;;
             margin-top:35px;
             margin-bottom:35px;
             margin-left: 35px;
@@ -91,7 +91,7 @@
         .mid-text{
             font-size: 20px;
             font-weight:lighter;
-            font-family:verdana;
+            font-family:'Montserrat',sans-serif;;
             margin-top:35px;
             margin-bottom:35px;
             margin-left:10px;
@@ -103,13 +103,13 @@
             margin-bottom:10px;
             color:rgb(255, 255, 255);
             font-size:15px;
-            font-family:verdana;
+            font-family:'Montserrat',sans-serif;;
             font-weight:bold;
         }
         .right-text {
             background-color: #f1f1f1;
             border-left: 2px solid gray;
-            font-family:verdana;
+            font-family:'Montserrat',sans-serif;;
             padding: 5px;
         }
 
@@ -136,24 +136,32 @@
         }
         .leftcontentmap{
             position: relative;
-            width: 55%;
+            width: 50%;
             float: left;
+            padding-right: 18px;
+            padding-left: 35px;
         }
         .leftcontentmap1{
             position: relative;
-            width: 45%;
+            width: 35%;
             float: left;
+            padding-right: 18px;
+            padding-left: 35px;
         }
         .rightcontentmap{
-            width: 45%;
+            width: 40%;
             min-height: 700px;
             position: relative;
             float: right;
+            padding-right: 18px;
+            padding-left: 35px;
         }
         .rightcontentmap1{
             width: 55%;
             position: relative;
             float: right;
+            padding-right: 18px;
+            padding-left: 35px;
         }
 
         .flourish-embed{
@@ -302,7 +310,7 @@
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
-            font-family:verdana;
+            font-family:'Montserrat',sans-serif;;
         }
         ul.navbar li a:hover{
         	background-color: rgb(153, 153, 153);
@@ -325,27 +333,35 @@
         <li><a href="India.html">India</a></li>
         <li><a href="Future Impact.html">Future Impact</a></li>
     </ul>
-  <div class="rough-box-title">
-        <h1 class="title">
-              Global Climate Change Indicators and Trends
-        </h1>
-    </div>
+    
+    <div class="middleThings">
+        <div class="rough-box-title">
+            <h1 class="title">
+                Global Climate Change Indicators and Trends
+            </h1>
+        </div>
+
         <h2 class='text'>
             
             <center> Humanity's effect on global warming is undeniable. The Intergovernmental Panel on Climate Change stated that human activity that there is more than a 95% probability that human activity through the 20th and 21st century have warmed the planet. With the rise of fossil fuel consumption the 20th century saw levels of CO2 never seen in 800,000 years of tracked history. This unprecedented growth in CO2 levels and other greenhouse gasses has led to many effects, including higher temperatures, higher sea levels and shrinking ice caps and glaciers. Much of this has been brought on by the rise of urbanisation and the population boom of the 20th century.
             <br>
           <br>
-          The graphs below highlight the macro trends and effects of global warming through the 19th and 20th centuries. These trends will be picked up in regional city contexts in later sections to see how cities in India and China may be affected if behaviours aren't changed soon. All graphs are based on data from <a href="https://climate.nasa.gov/">NASA</a> and <a href="https://ourworldindata.org/grapher/co2-concentration-long-term">Our World in Data</a>.</a></center>
+          The graphs below highlight the macro trends and effects of global warming through the 19th and 20th centuries. These trends will be picked up in regional city contexts in later sections to see how cities in India and China may be affected if behaviours aren't changed soon. 
+          
+          <br>  <br>
+          All graphs are based on data from <a href="https://climate.nasa.gov/">NASA</a> and <a href="https://ourworldindata.org/grapher/co2-concentration-long-term">Our World in Data</a>.</a></center>
       </h2>
+    </div>
 
 <section>
-    <div>
-<h2>
-        Key Trends of Global Warming from 1860 to Present Day
-</h2>
-</div>
+
 
  <div class="leftcontentmap">
+    <div>
+        <h2>
+            Global Warming from 1860 to Present Day
+        </h2>
+        </div>
 <!-- Initialize a select button -->
 <select id="selectButton"></select>
   <div id="my_dataviz_tooltip"></div></div>
@@ -367,8 +383,8 @@
 <div class = "leftcontentmap1">
 <div class = "text">
 <p>
-    <br><br><br>
-    <h2>Normalised Key Trends 2002 to 2018</h2> 
+    <br>
+    <h2>Normalised Trends 2002 to 2018</h2> 
     <br>
     The small multiples plot to the right explores the same variables as above but uses the same timeframe and normalised values to ease comparison.
     <br></br>
