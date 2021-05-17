@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="robots" content="noindex">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Document</title>
     <script src="./js/d3.min.js"></script>
     <script src="./js/d3-tip-v6.js"></script>
     <link rel="stylesheet" href="./js/d3-tip.css">
@@ -14,7 +13,9 @@
     <script src="http://d3js.org/d3.v4.js"></script>
     <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
      <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-      <link rel="stylesheet" href="./js/india_style.css">
+     <script src="https://d3js.org/queue.v3.min.js"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
+
 
 
   <style>
@@ -35,6 +36,16 @@
 
         .chart1 {
             width: 98%;
+            height: 90vh;
+            display: grid;
+            grid-template-rows: 10% 80%;
+            background-color: #f4f4f4;
+            float: right;
+
+        }
+
+        .chart2 {
+            width: 98%;
             height: 88vh;
             display: grid;
             grid-template-rows: 10% 80%;
@@ -42,7 +53,6 @@
             float: center
 
         }
-
 
         aside.toolbox1 {
           width: 100%;
@@ -85,23 +95,23 @@
         }
 
         .year {
-      font-size: 50px;
+      font-size: 90px;
       font-family: fantasy;
       font-variant-numeric: proportional-nums;
       opacity: 0.3;
           }
 
         .title {
-            font-size: 4rem;
+            font-size: 60px;
             text-align: center;
             font-weight:lighter;
-            font-family:cursive;
+            font-family:Verdana;
             color:rgb(0, 0, 0);
         }
 
 
         text {
-            fill: gray
+            fill: black
 
         }
 
@@ -148,6 +158,32 @@
             background-color:gray;
             margin-top:50px;
             margin-bottom:10px;
+            text-align: center;
+            color:rgb(255, 255, 255);
+            font-size:25px;
+            font-family:Verdana;
+            vertical-align:middle;
+            font-weight:bold;
+            margin-left:5%;
+            margin-right:5%;
+        }
+
+         .midHeader2{
+            background-color:gray;
+            margin-top:20px;
+            text-align: center;
+            color:rgb(255, 255, 255);
+            font-size:25px;
+            font-family:Verdana;
+            vertical-align:middle;
+            font-weight:bold;
+            margin-left:5%;
+            margin-right:5%;
+        }
+
+         .midHeader3{
+            background-color:gray;
+            margin-top:2px;
             text-align: center;
             color:rgb(255, 255, 255);
             font-size:25px;
@@ -212,6 +248,19 @@
             text-align: justify;
         }
 
+        .right-text2 {
+            font-size: 20px;
+            font-weight:lighter;
+            font-family:cursive;
+            font-family:cursive;
+            padding: 2%;
+            text-align: justify;
+            margin-left: 15px;
+            margin-right: 15px;
+
+        }
+
+
         #chartArea {
             display: grid;
             grid-template-columns: 70% 25%;
@@ -228,7 +277,7 @@
          #chartArea1 {
             display: grid;
             grid-template-columns: 25% 70% ;
-            height: 99vh;
+            height: 75vh;
             overflow-y: auto;
             overflow-x: hidden;
             width: 100%;
@@ -238,8 +287,8 @@
 
         #chartArea2 {
             display: grid;
-            grid-template-columns: 50% 35% ;
-            height: 99vh;
+            grid-template-columns: 55% 40% ;
+            height: 85vh;
             overflow-y: auto;
             overflow-x: hidden;
             width: 100%;
@@ -248,17 +297,19 @@
         }
 
         #chartArea3 {
+            float: center;
             display: grid;
-            grid-template-columns: 50% 45%;
-            height: 90%;
+            grid-template-columns: 50% 35%;
+            height: 100%;
             overflow-y: auto;
             overflow-x: hidden;
             width: 100%;
             padding-right: 5px;
-            padding-left: 35px;
+            padding-left: 55px;
             padding-top: 0px
 
         }
+
 
         #container1 {
             height: 100%;
@@ -284,8 +335,8 @@
         }
         .rough-box-title {
             margin: 0 auto;
-            margin-top:35px;
-            margin-bottom:35px;
+            margin-top:5px;
+            margin-bottom:5px;
             padding: 20px;
             color: rgb(255, 255, 255);
             background-image: paint(rough-painter);
@@ -302,7 +353,7 @@
       font-size: 50px;
       font-family: fantasy;
       font-variant-numeric: proportional-nums;
-      opacity: 0.3;
+      opacity: 0.6;
           }
 
 
@@ -322,18 +373,29 @@
     .playpauseBtn {
       position:relative;
       transition: .5s ease;
-      top: -570px;
+      top: -30px;
       left: 0px;
       right: -0px;
       bottom: 10px;
       cursor: pointer;
+      opacity: 0.7;
+
     }
 
-    .legendBtn {
+
+   .sizeLgn {
       position:relative;
-      transition: .5s ease;
-      top: 100px;
-      left: 200px;
+      top: -620px;
+      left: 550px;
+      right: 10px;
+      bottom: 10px;
+    }
+
+
+    .colorLgn {
+      position:relative;
+      top: -350px;
+      left: 680px;
       right: 10px;
       bottom: 10px;
     }
@@ -376,9 +438,11 @@
   padding: 7px;
   font-size: 0.9em;
   pointer-events: none;
-  background: #D9DBE6;
-  border: 1px solid #ccc;
+  background: #202020;
   border-radius: 4px;
+  color: white;
+  font-family: Verdana;
+
 
   -moz-box-shadow:    3px 3px 10px 0px rgba(0, 0, 0, 0.25);
   -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.25);
@@ -445,7 +509,6 @@
     <li><a href="China.html">China</a></li>
     <li><a class="active" href="India.html">India</a></li>
     <li><a href="Future Impact.html">Future Impact</a></li>
-    <li><a href="Team.html">Team</a></li>
 </ul>
 
 
@@ -455,8 +518,9 @@
 
 
 <div class="middleThings">
+                <br><br><br><br><br><br><br>
+
             <div class="rough-box-title">
-              <br><br><br><br><br><br><br>
 
                 <h1 class="title">
                    The impact of climate change in India
@@ -522,8 +586,7 @@
                     </div>
      </section>
 
-        <section class="chart">
-            <div class="title"></div>
+        <section class="chart2">
             <div id = "bubbleDiv"></div>
    </section>
 
@@ -537,10 +600,13 @@
 
 
 <br><br>
-<div id="container1">
-     
+<div id="container1" style="margin-top: 10px">
+                     <div class="midHeader"><p>Average temperatures in India's cities 2000 - 2020 </p></div>  
+
 <!-- Animation play pause control elements -->  
-<section id="chartArea3">
+<section id="chartArea2">
+
+
    
    <section class="chart1">
             <div class="title"></div>
@@ -552,23 +618,38 @@
                 <img src="./data/India/btnPlay.png" style="height:35px;width:35px" alt="Submit">
                </button>
             </div>
-              <!-- creating a slider to select individual year -->
+              <!-- creating a slider to select individual year 
              <div class="slider" >
                 <input type="range" id="year" value="1" min="1" max="21" oninput="sliderValue(this.value)" style="width: 540px; border-color:black;"> 
              </div>
+             -->
              </aside>
+
+             <aside >
+             <div class="sizeLgn">
+                   <img src="./data/India/size.jpg" style="height:120px;width:150px" alt="Submit">
+            </div>
+            </aside>
+
+            <aside >
+             <div class="colorLgn">
+                   <img src="./data/India/color.jpg" style="height:200px;width:50px" alt="Submit">
+            </div>
+            </aside>
+
+
     </section>
 
-    <section>
-            <div class="right-side-div">
-              <div class="midHeader1"><span>Average temperatures in India's cities 2000 - 2020 </span></div>  
+    <section style="margin-left: 20px">
+
              <!--<div class="right-side-header" >  -->
-                <p class="right-text1">
+              <br>
+                <div class="right-text2">
                           According to the Intergovernamental Panel on Climate Change (IPCC), the ascent of 1.5ºC in the global average temperature could aggravate even more the current situation of the country.  
                            
-                   </p>
-                <div id="barchart"></div>
-              </div>
+                   </div>
+                   
+                <div id="barchart" style="text-align: center; font-weight: bold; margin-left: 20px;"></div>
      </section>
 </section> 
 </div>
@@ -619,7 +700,7 @@ var layout = {
 legend: {
     font: {
         family: 'Verdana',
-        size: 11,
+        size: 15,
         color: '#212121'
       }
   },
@@ -631,7 +712,7 @@ legend: {
     type: 'date',
      tickfont: {
       family: 'Verdana',
-      size: 11,
+      size: 15,
       color: '#212121'
     },
     linecolor: 'white', 
@@ -642,7 +723,7 @@ legend: {
       text: 'Terawatt hour (TWh)',
       font: {
         family: 'Verdana',
-        size: 11,
+        size: 15,
         color: '#212121'
       }
     },
@@ -652,7 +733,7 @@ legend: {
     type: 'linear',
     tickfont: {
       family: 'Verdana',
-      size: 11,
+      size: 15,
       color: '#212121'
     },
     linecolor: 'white', 
@@ -703,11 +784,12 @@ d3.csv("./data/India/natural_disasters.csv", function(err, rows){
 
 var layout = {
     autosize: true,
+    height:500,
   margin: {
     l: 5,
     r: 5,
-    b: 20,
-    t: 10,
+    b: 50,
+    t: 40,
   },
 
   paper_bgcolor: 'transparent',
@@ -717,7 +799,7 @@ var layout = {
 legend: {
     font: {
         family: 'Verdana',
-        size: 11,
+        size: 15,
         color: '#212121'
       }
   },
@@ -726,7 +808,7 @@ xaxis: {
     autorange: true,
       tickfont: {
       family: 'Verdana',
-      size: 11,
+      size: 15,
       color: '#212121'
     },
     linecolor: 'white', 
@@ -759,17 +841,8 @@ Plotly.newPlot('bubbleDiv', data, layout)
       var countrySelect = [];
       var checkedArr = [];
       var click  = 0
-      
-
-          
-      // Define margins
-      var margin = {top: 0, right:10, bottom: 0, left: 0};
-
-      //Width and height
-      var outer_width  = 400;
-      var outer_height = 300;
-      var svg_width = window.innerWidth  - 200;
-      var svg_height = window.innerHeight - 100;
+      var width = window.innerWidth*1
+      var height = window.innerHeight*1.5
       var playpauseFlag = 0
 
 
@@ -782,16 +855,16 @@ Plotly.newPlot('bubbleDiv', data, layout)
       //Create SVG element for bubble plot
       var svg = d3.select("#map")
             .append("svg")
-            .attr("width", svg_width + margin.left + margin.right + 100)
-            .attr("height", svg_height + margin.top + margin.bottom + 80)
+            .attr("width", width)
+            .attr("height", height)
             .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+            //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
             var projection = d3.geo.mercator() // mercator makes it easy to center on specific lat/long
-                .scale(1100)
-                .center([91, 24]); // long, lat of NYC
+                .scale(1200)
+                .center([85, 20]) 
                 //.translate([ (outer_width / 2), outer_height / 2])
-                //.precision(.1);
+                .precision(.1);
 
 
             var pathGenerator = d3.geo.path()
@@ -814,7 +887,7 @@ Plotly.newPlot('bubbleDiv', data, layout)
 
 
       // Linear scale for population on radius
-      var rScale = d3.scale.linear().domain([7000, 10000000]).range([10,50]);
+      var rScale = d3.scale.linear().domain([7000, 15000000]).range([10,50]);
 
 
       // Ordinal Scaling of Regions on to Colors of circles.
@@ -826,17 +899,17 @@ Plotly.newPlot('bubbleDiv', data, layout)
 
       //Initialization of display_year text floating in the graph
       svg.append("text")
-         .attr("y", svg_height / 9)
-         .attr("x", svg_width / 3)
+         .attr("y", 560)
+         .attr("x", 50)
          .style("text-anchor", "start")
          .attr("id", "year")
          .attr("class", "year")
          .attr("opacity", 0.5)
-         .text(yearScale(display_year));
+         .text(yearScale(display_year));    
    
       // Ordinal Scaling of Regions on to Colors of circles.
 
-    var fill = d3.scale.linear().domain([30.4, 31.8, 33.2, 34.2]).range(["#EFE4B0", "#FFFF00", "#F79F48", "#FF0000", "#800000"]);
+    var fill = d3.scale.linear().domain([20,25,27.5,31,32.5, 33, 35, 36]).range(["#BD70F2","#013FF2","#13EF98","#6FDD00","#EFE4B0", "#FFFF00", "#F79F48", "#FF0000", "#800000"]);
 
     // function to generate vizulization
     function generateViz() {
@@ -873,7 +946,7 @@ Plotly.newPlot('bubbleDiv', data, layout)
         circles
         .on("mouseover", mouseHoverOn)
             .on("mouseout", mouseHoverOff)
-            .transition()
+            //.transition()
       //     .duration(1000)
       //     .ease("linear")
            .attr("cx", function(d) {
@@ -885,7 +958,7 @@ Plotly.newPlot('bubbleDiv', data, layout)
            //.style("stroke", function(d) {return fill(+d.temperature); })
            .style("stroke", "black")
             .style("stroke-width", 2)
-           .attr("opacity", 0.5)
+           //.attr("opacity", 0.8)
            .style("stroke-opacity", 1.5)
            .attr("fill", function(d) {
                return fill(+d.temperature);
@@ -893,8 +966,8 @@ Plotly.newPlot('bubbleDiv', data, layout)
 
        // Text label for Year in background
        svg.select("#year")
-           .attr("y", svg_height/9 )
-           .attr("x", svg_width/3 )
+           .attr("y", 500)
+           .attr("x", 50)
            .style("text-anchor", "start")
            .attr("class", "year")
          .text(yearScale(display_year));
@@ -915,8 +988,7 @@ Plotly.newPlot('bubbleDiv', data, layout)
              .attr("stroke-opacity", 1.5)
              .attr("fill", function(d) {
                     return fill(+d.temperature); })
-             .attr("opacity", 0.5)
-             .attr()
+             //.attr("opacity", 0.8)
              //.style("stroke", function(d) {return fill(+d.temperature); });
              .style("stroke", "black");
 
@@ -948,6 +1020,7 @@ Plotly.newPlot('bubbleDiv', data, layout)
 
 
 
+
         // to generate the static trace for a pirticular country
          var mouseclick = function(d){
          country = d.Country
@@ -966,9 +1039,9 @@ Plotly.newPlot('bubbleDiv', data, layout)
         .attr("r", function(d) {
               return rScale(+d.pop); })
         //.style("stroke", function(d) {return fill(+d.temperature); })
-                   .style("stroke", "black")
+        .style("stroke", "black")
         .style("stroke-width", 2)
-        .attr("opacity", 0.5)
+        //.attr("opacity", 0.8)
         .style("stroke-opacity", 1.5)
         .attr("fill", function(d) {
                return fill(+d.temperature); });
@@ -1077,7 +1150,7 @@ var trace1 = {
   x: ['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020'],
   y: [0,.2999992,.8999996,.1999989,0,-.3999996,.3999996,.5,0,.6000004,1,.3999996,.6000004,.6999989,-.3000011,.6000004,.5,.6999989,.3999996,.5,.1000004],
   marker:{
-    color: ['#004080','#004080','#004080','#004080','#004080','#ED1C24','#004080','#004080','#004080','#004080','#004080','#004080','#004080','#004080','#ED1C24','#004080','#004080','#004080','#004080','#004080','#004080']
+        color: ['#ED1C24','#ED1C24','#ED1C24','#ED1C24','#ED1C24','#004080','#ED1C24','#ED1C24','#ED1C24','#ED1C24','#ED1C24','#ED1C24','#ED1C24','#ED1C24','#004080','#ED1C24','#ED1C24','#ED1C24','#ED1C24','#ED1C24','#ED1C24']
   },
   type: 'bar'
 };
@@ -1085,26 +1158,49 @@ var trace1 = {
 var data = [trace1];
 
 var layout = {
-  title: {
-    text: 'Temperature variations in India (baseline 2000)',
-    font: {
-        size: 17,
+
+title: {
+      text: 'Temperature variations in India (baseline 2000)',
+      font: {
+        family: 'Cursive, bold',
+        size: 20,
         color: '#212121'
-      }},
+      }
+    },
+
   autosize: true,
     
   paper_bgcolor: 'transparent',
   plot_bgcolor: 'transparent',
    yaxis: {
+    tickfont: {
+      family: 'Verdana',
+      size: 15,
+      color: '#212121'
+    },
   title: {
       text: 'Temperature (ºC)',
       font: {
-        size: 11,
+        family: 'Verdana,bold',
+        size: 15,
         color: '#212121'
       }
     },
     range: ['-1', '1'],  
   },
+   xaxis: {
+    tickfont: {
+      family: 'Verdana',
+      size: 15,
+      color: '#212121'
+    },     
+     font: {
+        family: 'Verdana,bold',
+        size: 15,
+        color: '#212121'
+      }
+  },
+  
   
 };
 
