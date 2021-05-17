@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/d3.min.js"></script>
+    <script src="./js/d3-tip-v6.js"></script>
+    <link rel="stylesheet" href="./js/d3-tip.css">
+    <script src="https://unpkg.com/flubber@0.3.0"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+
+    <style>
+        * {
+            margin: 0;
+        }
+        .chart {
+            width: 100%;
+            height: 100vh;
+            display: grid;
+            grid-template-rows: 10% 80%;
+            background-color: #f4f4f4;
+
+        }
+
+        #map {
+            width: 100%;
+        }
+
+        /* svg {
+            background-image: url("./img/world.png");
+            background-size: cover;
+        } */
+
+        .domain {
+            stroke: lightgray;
+        }
+
+        body {
+            margin: 0;
+            box-sizing: content-box;
+            z-index:1;
+        }
+        .title {
+            font-size: 4rem;
+            text-align: center;
+            font-weight:lighter;
+            font-family:cursive;
+            color:rgb(0, 0, 0);
+        }
+        
+        .maptitle{
+            font-size: 3rem;
+            text-align: center;
+            font-weight: lighter;
+            font-family: cursive;
+            color: rgb(0, 0, 0);
+            margin-left: 10%;
+
+        }
+
+        text {
+            fill: gray
+
+        }
+
+
+
+        g line {
+            stroke: lightgray;
+        }
+
+        .right-side-div {
+            height: 100vh;
+            margin-left:10px;
+
+        }
+        .middleThings{
+            width: 50%;
+            margin: 0 auto;
+        }
+        .midHeader{
+            background-color:gray;
+            margin-top:50px;
+            margin-bottom:10px;
+            text-align: center;
+            color:rgb(255, 255, 255);
+            font-size:25px;
+            font-family:Verdana;
+            vertical-align:middle;
+            font-weight:bold;
+            margin-left:10px;
+        }
+        .text{
+            font-size: 20px;
+            text-align: center;
+            font-weight:lighter;
+            font-family:cursive;
+            margin-top:35px;
+            margin-bottom:35px;
+        }
+        .mid-text{
+            font-size: 20px;
+            font-weight:lighter;
+            font-family:cursive;
+            margin-top:35px;
+            margin-bottom:35px;
+            margin-left:10px;
+            width:100%;
+        }
+
+        .right-side-header{
+            background-color:#314563;
+            margin-bottom:10px;
+            color:rgb(255, 255, 255);
+            font-size:15px;
+            font-family:cursive;
+            font-weight:bold;
+        }
+        .right-text {
+            background-color: #f1f1f1;
+            border-left: 2px solid gray;
+            font-family:cursive;
+            padding: 5px;
+        }
+
+        #chartArea {
+            display: grid;
+            grid-template-columns: 70% 25%;
+            height: 99vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+            padding-right: 18px;
+        }
+        #container1 {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+
+        }
+
+        .flourish-embed{
+            text-align: center;
+            width: 100%;
+        }
+
+        .rough-box {
+            max-width: 500px;
+            margin: 0 auto;
+            margin-bottom:35px;
+            padding: 20px;
+            color: rgb(255, 255, 255);
+            background-image: paint(rough-painter);
+        }
+        .rough-box {
+            --rough-border-width: 3;
+            --rough-fill: rgb(194, 188, 188);
+            --rough-fill-weight: 9;
+            --rough-fill-style: zigzag;
+        }
+        .rough-box-title {
+            margin: 0 auto;
+            margin-top:70px;
+            margin-bottom:35px;
+            padding: 20px;
+            color: rgb(255, 255, 255);
+            background-image: paint(rough-painter);
+        }
+        .rough-box-title {
+            --rough-border-width: 3;
+            --rough-fill: rgb(219, 219, 219); 
+            --rough-fill-weight: 9;
+            --rough-fill-style: zigzag;
+        }
+        
+        
+    </style>
+    <style>  
+        /* Top navigation style */
+        ul.navbar{
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index:2;
+
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            
+            background-color: #202020;
+        }
+
+        li{
+            float: left;
+        }
+
+        ul.navbar li a{
+            display: block;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-family:cursive;
+        }
+        ul.navbar li a:hover{
+        	background-color: rgb(153, 153, 153);
+        }
+        .active {
+            background-color: #005ce6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top navigation div -->
+    <ul class="navbar">
+        <li style="float:right"><a href="index.html">Cities Transformation</a></li>
+        <li><a href="About.html">About</a></li>
+        <li><a href="General View.html">General View</a></li>
+        <li><a class="active" href="China.html">China</a></li>
+        <li><a href="India.html">India</a></li>
+        <li><a href="Future Impact.html">Future Impact</a></li>
+        <li><a href="Team.html">Team</a></li>
+    </ul>
+ 
+    
+    <article>
+        <div class="middleThings">
+            <div class="rough-box-title">
+                <h1 class="title">
+                   Depth into Carbon Dioxide Emission in China
+                </h1>
+            </div>
+            
+            <h2 class='text'>
+                By <a href="https://github.com/xudong-zh">Xudong Zhang</a>
+            </h2>
+            <p class="mid-text">
+                Our climate has been affected deeply by the emission of carbon dioxide for a very long time. Recent years, China has 
+                become one of the largest carbon dioxide emission countries . In 2017, it released 9.8 billion tons carbon dioxide. 
+                Most of China's carbon dioxide emissions come from fossil fuels, esopecially from the coal (70% of total energy 
+                comes from coal). 
+            </p>
+            <p class="mid-text">
+                To look deep into the relationships among carbon dioxide emission, economic structures, geographical elements and 
+                population in China, we first need to understand current emission pattern at the level of province or city, and how it 
+                transformed from 2000 to 2016 (when the development of economy in China was relatively higher than any period since 1978).
+                This analysis could give us a initial but relatively detailed cognition of where contributed more emission than other places.
+            </p>
+            <div class="rough-box">
+                <p class="text">
+                    So, the first question is: Where are carbon dioxide emissions higher than the average in China?
+                </p>
+            </div>
+        </div>
+        
+        <div id="container1">
+
+            <section id="chartArea">
+                <section class="chart">
+                    <div class="maptitle">
+                        <h5>The Carbon Dioxide Emission Map of China, 2017</h5>
+                    </div>
+                    <div id="map">
+
+                    </div>
+
+                </section>
+
+                <!-- text -->
+                <section>
+
+                    <div class="right-side-div">
+                        <div class="right-side-header" >
+                            <span style="margin-left:5px;">
+                                Introduction to distribution map
+                            </span>
+                        </div>
+                        <p class="right-text">
+                            In this example, all the original emission data was divided by the average emission volume.
+                            This means that, on the map, the regions emitting more carbon dioxide than average(above 1) are shaded in pink 
+                            and less emitting regions (below 1)are coloured by green. You can move your mouse over each area to see the 
+                            specific emission ratio.
+                        </p>   
+                    </div>
+
+                    <div class="right-side-div">
+                        <div class="right-side-header" >
+                            <span style="margin-left:5px;">
+                                Province Map: Clearly Spatial Agglomeration
+                            </span>
+                        </div>
+                        <p class="right-text">
+                            In China, the most developed regions and cities are located in the south or east of China.
+                            From this province boundary map, the more developed provinces, such as Guangdong province, Shanghai, produced
+                            relatively more carbon dioxide annually. But some provinces(Inner Mongolia, Shanxi, Heibei,) that 
+                            located in the North of China, still contain much higher emission level, compared to the average level.
+                        </p>
+                    </div>
+
+                    <div class="right-side-div">
+                        <div class="right-side-header" >
+                            <span style="margin-left:5px;">
+                                City Map: Agglomeration Mixed with Sporadic Distribution
+                            </span>
+                        </div>
+                        <p class="right-text">
+                            This is cities' boundary map of China. It was coloured by the ratio data, like the province map.It gives us 
+                            more clear view of which cities contribute more carbon dioxide than others. The cities that emit more carbon dioxide 
+                            than the average level aggregated in the North and Eastern coastal region of China. Some core cities(the cities 
+                            that contain the circles, these cities usually have more access to various resources in the provinces to which they belong)
+                            make more contribution to emission, compared to the other cities in the same provinces relatively, and a sporadic distribution 
+                            pattern emerged.
+
+                        </p>
+                    </div>
+
+                    <div class="right-side-div">
+                        <div class="right-side-header" >
+                            <span style="margin-left:5px;">
+                                Scatter Chart: Where are spatial elements in Data World?
+                            </span>
+                        </div>
+                        <p class="right-text">
+                            The animation combined the shape transformation of cities, provinces and their core cities into one chart.The X axis is the 
+                            the ratio of carbon dioxide emission. The Y axis is province.The shapes in the chart is positioned by their ratio of carbon 
+                            dioxide emission. The small, coloured circles denote the cities, and circles without colour are core cities.The bigger are 
+                            provinces. As we can see, most of the core cities distributed at the right part of the line, which means that these cities 
+                            emitted more carbon dioxide than others. 9 provinces (the bigger circles) are above the average level. Among them, the North 
+                            provinces cover 66.7% of total(Shandong, Hebei, Inner Mongolia, Henan, Liaoning, Shanxi).
+                        </p>
+                    </div>
+                </section>
+            </section>
+        </div>
+
+        <!-- others -->
+        <div class="middleThings">
+            <div class="midHeader">
+                <span>
+                    Transformation of CO2 Emission in 50 Cities
+                </span>
+            </div>
+            <div class="mid-text">
+            <p>
+                The carbon dioxide emission pattern has been displayed above. Next, we want to know how this pattern 
+                came into being.Based on the above analysis, we know that core cities in China made a more contribution 
+                to the emission of carbon dioxide.Also because the original, well-prepared transformation dataset of China 
+                cities' carbon emission
+                from <a href="https://figshare.com/articles/dataset/A_CO2_emissions_dataset_of_50_Chinese_cities_xlsx/13490625">Haikun Wang etc</a> 
+                we used focuses on 50 cities, and most of them are the core cities of China, it is appropriate for us to 
+                explore the changes of cities in the context of carbon dioxide emission.
+            </p>
+            </div>
+            <div class="mid-text">
+                <p>
+                    For the rest of the part, we will introduce time line (2000-2016) into our analysis and explore how the emission 
+                    volume grew and what sectors contributed more emissions in each city.This could help us understand what kinds of 
+                    development path the cities choosed during this period.
+                </p>
+            </div>
+    
+            <div class="rough-box">
+                <p class="text">
+                    Here the first question is: How did carbon dioxide emissions of cities grow from 2000 to 2016 in China?
+                </p>
+            </div>
+            <div class="mid-text">
+                <p>
+                    The map below uses the annual volume of carbon dioxide emission in each city as the variable of the white circles.
+                    As time went by, the most noticeable regions were the East part (e.g. Yangtze Delta),South part (Pearl River Delta) 
+                    and North part (Beijing-Tianjin-Hebei) of China. If you click on the circles in the map, you might find that most of 
+                    cities in these three areas emitted more carbon dioxide than that in any other cities in each year. Although some cities
+                    may have similiar volume of carbon dioxide emissions, their structures of emission may have sighnificant differences.
+                    Next graph could give us more information about the transformation of economic structures of emission in each city.
+                </p>
+            </div>
+
+        </div>
+        <div class="flourish-embed" data-src="visualisation/354282" data-height="100%">
+            <iframe src='https://flo.uri.sh/visualisation/6132417/embed' title='Interactive or visual content' 
+                    frameborder='0' scrolling='no' style='width:50%;height:600px;' 
+                    sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'>
+            </iframe>
+            
+        </div>
+        <div class="middleThings">
+            <div class="mid-text">
+                <p>
+                    This graph shows us the structure of emission in each city. We choose primary industry, construction, transportation,
+                    commercial, residents, and other industry as the analysis objects. The changes of ratio of emission volume among sectors in each 
+                    city are relatively small, most of cities followed their previous path to develop. But we still could find some differences
+                    if we make a comparison between cities. Taking Shenzhen and Guangzhou as an example, both of them are the largest cities
+                    in China. But their emission structure is different. The commercial sector in Guangzhou covered a large percentage
+                    of emission annually. But Shenzhen is relatively more balanced.
+                </p>
+            </div>
+        </div>
+        <div class="flourish-embed" data-src="visualisation/354282" data-height="100%">
+            <iframe src='https://flo.uri.sh/visualisation/6134644/embed' title='Interactive or visual content' 
+                    frameborder='0' scrolling='no' style='width:40%;height:400px;' 
+                    sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'>
+            </iframe>
+        </div>
+        <div class="middleThings">
+            <div class="mid-text">
+                <p>
+                    So far, we have already talked about the spatial pattern of carbon dioxide emission and the 
+                    transformation of 50 cities' emission sectors. Next, we will combine the population, GDP, 
+                    region information, carbon dioxide emission data together, to see what kind of division of cities
+                    came into being as time went by.
+                </p>
+            </div>
+            <div class="rough-box">
+                <p class="text">
+                    So, the last question: Is their any geographical differences among China cities when considering the 
+                    relationships between GDP and emission volume?
+                </p>
+            </div>
+        </div>
+        <div class="middleThings">
+            <div class="midHeader">
+                <span>
+                    North/South Divide
+                </span>
+            </div>
+            <div class="mid-text">
+                <p>
+                    If you’re familiar with the geography and climates of China, you might know that the cities which are
+                    at the North of Qinling-Huaihe Line, will be regarded as the North cities. Most of North cities uses
+                    coal as major energy to heat and generate the electricity. Some heavy industries, such as Metal smelter,
+                    also prefer to distributing in the North, because of the geographical proximity to natural resources.
+                    These reasons resulted in more emission in North China.
+                </p>
+            </div>
+        </div>
+        
+        <div class="flourish-embed" data-src="visualisation/354282" data-height="100%">
+            <iframe src='https://flo.uri.sh/visualisation/6135024/embed' title='Interactive or visual content' 
+                    frameborder='0' scrolling='no' style='width:50%;height:600px;' 
+                    sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'>
+            </iframe>
+        </div>
+
+        <div class="middleThings">
+            <div class="mid-text">
+                <p>
+                    We still focus on the 50 cities we mentioned before.The above graph shows the distribution of cities 
+                    in the GDP-Total Carbon dioxide Emission context. The division pattern of cities emerged as time went by.
+                    In 2016, there were 10 North cities above the trend line, covering more than 70% of total cities which were 
+                    above this line. All of cities in the South of China were below the trend line, and the majority of cities
+                    from East and West were same as South cities. This distribution means that South cities could produce 
+                    more economic outputs, compared with North cities, under the same carbon dioxide emission.
+                    This graph clearly shows when the division between South and North is explicit and what kind of pattern it is.
+                </p>
+            </div>
+        </div>
+
+        <div class="middleThings">
+            <div class="midHeader">
+                <span>
+                    What is next?
+                </span>
+            </div>
+            <div class="mid-text">
+                <p>
+                    In this section, we mainly focus on the carbon dioxide emission topic in China, where the emission has already 
+                    become the largest one. Carbon dioxide emission has affected almost all aspects of our life and environment, such as 
+                    temperature, sea level, and the distribution of species. It is crucial for us to continue working on analysis of the 
+                    current emission spatial pattern, future trends and its impacts.
+                </p>
+            </div>
+        </div>
+        
+    </article>
+
+    <script src="./index.js"  type="module"></script>
+    <script>
+        CSS.paintWorklet.addModule('./dist/rough-painter.bundled.js');
+    </script>
+</body>
+
+</html>
