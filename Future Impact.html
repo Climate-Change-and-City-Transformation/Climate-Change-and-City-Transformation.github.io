@@ -10,10 +10,8 @@
 <script src="openlayers/ol.js"></script>
 
 <style>
-* {
-            margin: 0;
-        }
-#map {
+
+#map { position: absolute; top: 45px;   width: 1550px; height:750px;
 
 } 
 
@@ -45,6 +43,9 @@ Range: <select id="range_select" onchange="range_select_change(this);"></select>
 <svg id="levelslider" xmlns="http://www.w3.org/2000/svg" version="1.1" 
 width="350" height="500">
 </svg>
+<font size="1"><br>Notice: This map is not meant as a planning tool or as a prediction for any precise location and is provided without any accuracy or suitability for any particular purpose.</font>
+<br>
+<br>
 </div>
 
 <div id="map" class="map"></div>
@@ -99,7 +100,6 @@ Sources:
     <li><a href="China.html">China</a></li>
     <li><a href="India.html">India</a></li>
     <li><a class="active" href="Future Impact.html">Future Impact</a></li>
-    <li><a href="Team.html">Team</a></li>
 </ul>
 <script>
 ///////////////////////////////////////////////////////////////////////////////
