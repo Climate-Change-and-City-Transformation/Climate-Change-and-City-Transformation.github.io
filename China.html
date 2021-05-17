@@ -13,6 +13,8 @@
     <script src="https://unpkg.com/flubber@0.3.0"></script>
     <script src="https://unpkg.com/topojson@3"></script>
 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <style>
         * {
             margin: 0;
@@ -45,19 +47,21 @@
             z-index:1;
         }
         .title {
-            font-size: 4rem;
+            font-size: 45px;
             text-align: center;
             font-weight:lighter;
-            font-family:cursive;
+            font-family:'Montserrat',sans-serif;
+            font-weight: bold;
             color:rgb(0, 0, 0);
         }
         
         .maptitle{
-            font-size: 3rem;
+            font-size: 40px;
             text-align: center;
             font-weight: lighter;
-            font-family: cursive;
+            font-family: 'Montserrat',sans-serif;
             color: rgb(0, 0, 0);
+            margin-top:2%;
             margin-left: 10%;
 
         }
@@ -89,7 +93,7 @@
             text-align: center;
             color:rgb(255, 255, 255);
             font-size:25px;
-            font-family:Verdana;
+            font-family:'Montserrat',sans-serif;
             vertical-align:middle;
             font-weight:bold;
             margin-left:10px;
@@ -98,14 +102,14 @@
             font-size: 20px;
             text-align: center;
             font-weight:lighter;
-            font-family:cursive;
+            font-family:'Montserrat',sans-serif;
             margin-top:35px;
             margin-bottom:35px;
         }
         .mid-text{
             font-size: 20px;
             font-weight:lighter;
-            font-family:cursive;
+            font-family:'Montserrat',sans-serif;
             margin-top:35px;
             margin-bottom:35px;
             margin-left:10px;
@@ -117,13 +121,13 @@
             margin-bottom:10px;
             color:rgb(255, 255, 255);
             font-size:15px;
-            font-family:cursive;
+            font-family:'Montserrat',sans-serif;
             font-weight:bold;
         }
         .right-text {
             background-color: #f1f1f1;
             border-left: 2px solid gray;
-            font-family:cursive;
+            font-family:'Montserrat',sans-serif;
             padding: 5px;
         }
 
@@ -205,13 +209,18 @@
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
-            font-family:cursive;
+            font-family:'Montserrat',sans-serif;
         }
         ul.navbar li a:hover{
         	background-color: rgb(153, 153, 153);
         }
         .active {
             background-color: #005ce6;
+        }
+
+        .button-container{
+            text-align: center;
+            margin-bottom:35px;
         }
     </style>
 </head>
@@ -484,6 +493,9 @@
                     emissions spatial pattern, future trends and how it may impact our lives and the environment.
                 </p>
             </div>
+        </div>
+        <div class="button-container">
+            <a href="India.html" class="w3-button w3-black">Click here to: India Example</a>
         </div>
         
     </article>
