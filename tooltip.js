@@ -5,8 +5,8 @@ var parseDate = d3.timeParse("%Y");
 
     // set the dimensions and margins of the graph
     var margin = {top: 20, right: 60, bottom: 60, left: 120},
-        width = (window.innerWidth - 100) - margin.left - margin.right,
-        height = (window.innerHeight - 100) - margin.top - margin.bottom,
+        width = (self.innerWidth / 2) - margin.left - margin.right,
+        height = (self.innerHeight * 0.75) - margin.top - margin.bottom,
         tooltip = { width: 100, height: 100, x: 10, y: -30};
     
     // append the svg object to the body of the page
