@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
     <style>
         * {
             margin: 0;
@@ -8,7 +10,51 @@
         body {
             margin: 0;
             z-index:1;
+            font-family: 'Montserrat',sans-serif;
         }
+        h1,h2,h3,h4,h5,h6 {font-family: 'Montserrat',sans-serif}
+        .w3-bar-block .w3-bar-item {padding:20px}
+
+        .middleThings{
+            width:70%;
+            margin: 0 auto;
+
+        }
+
+        .mid-title{
+            text-align:center;
+            font-weight: 800;
+            font-size: 60px;
+            font-family:'Montserrat',sans-serif;
+            margin-top:70px;
+            width:100%;
+        }
+        .mid-name{
+            font-size: 25px;
+            font-weight: 700;
+            margin: 5px 0;
+            text-align:center;
+            text-transform: capitalize;
+            font-family:'Montserrat',sans-serif;
+            width:100%;
+        }
+        .mid-text{
+            margin-top: 20px;
+            font-weight: 300;
+            font-size: 22px;
+            text-align:center;
+            font-family:'Montserrat',sans-serif;
+            width:100%;
+        }
+
+
+        .gray-border {
+            width: 60%;
+            border-bottom: 1px solid #4d4d4d;
+            margin: 30px auto;
+            height: 16px;
+      }
+
         /* Top navigation style */
         ul.navbar{
             position: fixed;
@@ -34,8 +80,8 @@
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
-            font-family:cursive;
-        }
+            font-family:'Montserrat',sans-serif;
+}
         ul.navbar li a:hover{
         	background-color: rgb(153, 153, 153);
         }
@@ -56,8 +102,56 @@
         <li><a href="Future Impact.html">Future Impact</a></li>
         <li><a href="Team.html">Team</a></li>
     </ul>
-    <div id='testdiv'style="margin-top:50px">
-        <p> This is About Page.</p>
+    <div class="middleThings">
+        <div class="mid-title">
+            What Drives Us?
+        </div>
+        <div class="mid-name">
+            Group - 11
+        </div>
+        <div class="mid-text">
+            ust some random text, lorem ipsum text praesent tincidunt ipsum lipsum.
+            Once again, some random text to lorem lorem lorem lorem ipsum text 
+            praesent tincidunt ipsum lipsum.
+        </div>
+        <div class="gray-border">
+        </div>
+
+    </div>
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:30px">
+    <!-- Photo Grid-->
+  <div class="w3-row-padding w3-padding-16 w3-center" id="content">
+    <div class="w3-quarter">
+        <a href="General View.html">
+            <img src="./img/about-1.jpg" alt="Global" style="width:100%">
+        </a>
+        <h3>General View</h3>
+        <p>Describe effects of climate change at macro level.</p>
+    </div>
+    <div class="w3-quarter">
+        <a href="China.html">
+            <img src="./img/about-2.gif" alt="China" style="width:100%">
+        </a>
+        <h3>Regional Focus: China</h3>
+        <p>Focus on how climate change is affecting cities in China.</p>
+    </div>
+
+    <div class="w3-quarter">
+        <a href="India.html">
+            <img src="./img/about-3.gif" alt="India" style="width:100%">
+        </a>
+        <h3>Regional Focus: India</h3>
+        <p>Focus on how climate change is affecting cities in India.</p>
+    </div>
+    <div class="w3-quarter">
+        <a href="Future Impact.html">
+            <img src="./img/about-4.jpg" alt="Future" style="width:100%">
+        </a>
+        <h3>Future Looking</h3>
+        <p>Focus on what may or can happen in the future.</p>
+    </div>
+  </div>
     </div>
 </body>
 </html>
