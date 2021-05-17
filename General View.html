@@ -14,8 +14,6 @@
         .my_dataviz_tooltip {
             width: 100%;
             height: 100%;
-            display: grid;
-            grid-template-rows: 10% 80%;
             background-color: #f4f4f4;
 
         }
@@ -23,8 +21,6 @@
         .my_dataviz_smallmultiples {
             width: fit-content;
             height: fit-content;
-            display: grid;
-            grid-template-rows: 10% 80%;
             background-color: #f4f4f4;
 
         }
@@ -47,7 +43,7 @@
             font-size: 4rem;
             text-align: center;
             font-weight:lighter;
-            font-family:cursive;
+            font-family:verdana;
             color:rgb(0, 0, 0);
         }
 
@@ -82,17 +78,19 @@
             margin-left:10px;
         }
         .text{
-            font-size: 20px;
-            text-align: center;
+            font-size: 15px;
+            text-align: left;
             font-weight:lighter;
-            font-family:cursive;
+            font-family:verdana;
             margin-top:35px;
             margin-bottom:35px;
+            margin-left: 35px;
+            margin-right: 35px;
         }
         .mid-text{
             font-size: 20px;
             font-weight:lighter;
-            font-family:cursive;
+            font-family:verdana;
             margin-top:35px;
             margin-bottom:35px;
             margin-left:10px;
@@ -104,13 +102,13 @@
             margin-bottom:10px;
             color:rgb(255, 255, 255);
             font-size:15px;
-            font-family:cursive;
+            font-family:verdana;
             font-weight:bold;
         }
         .right-text {
             background-color: #f1f1f1;
             border-left: 2px solid gray;
-            font-family:cursive;
+            font-family:verdana;
             padding: 5px;
         }
 
@@ -123,18 +121,38 @@
             width: 100%;
             padding-right: 18px;
         }
-        #container1 {
-            height: 100%;
-            width: 100%;
-            overflow: auto;
 
+        .Maincontainer{
+            margin-left: auto;
+            margin-right:auto;
+            padding-top: 20px;
+            padding-bottom: 10px;
+            position: relative;
         }
-
-        #container2 {
-            height: 100%;
-            width: 100%;
-            overflow: scroll;
-
+        .container{
+            position: relative;
+            min-width:1350px;
+        }
+        .leftcontentmap{
+            position: relative;
+            width: 55%;
+            float: left;
+        }
+        .leftcontentmap1{
+            position: relative;
+            width: 45%;
+            float: left;
+        }
+        .rightcontentmap{
+            width: 45%;
+            min-height: 700px;
+            position: relative;
+            float: right;
+        }
+        .rightcontentmap1{
+            width: 55%;
+            position: relative;
+            float: right;
         }
 
         .flourish-embed{
@@ -249,7 +267,7 @@
           h2 {
               margin: 5px 15px 10px 20px;
               padding: 0;
-              font: bold 16px Verdana;
+              font: bold 25px Verdana;
           }
           
           p {
@@ -282,7 +300,7 @@
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
-            font-family:cursive;
+            font-family:verdana;
         }
         ul.navbar li a:hover{
         	background-color: rgb(153, 153, 153);
@@ -292,73 +310,74 @@
         }
 
     </style>
+          <script>
+            CSS.paintWorklet.addModule('./dist/rough-painter.bundled.js');
+        </script>
 </head>
 <body>
     <ul class="navbar">
-        <li style="float:right"><a href="index.html">Cities Transformation</a></li>
+        <li style="float:right"><a href="Index.html">Cities Transformation</a></li>
         <li><a href="About.html">About</a></li>
         <li><a class="active" href="General View.html">General View</a></li>
         <li><a href="China.html">China</a></li>
         <li><a href="India.html">India</a></li>
         <li><a href="Future Impact.html">Future Impact</a></li>
-        <li><a href="Team.html">Team</a></li>
     </ul>
   <div class="rough-box-title">
         <h1 class="title">
               Global Climate Change Indicators and Trends
         </h1>
-  </div>
+    </div>
         <h2 class='text'>
-          Based on data from <a href="https://climate.nasa.gov/">NASA</a> and <a href="https://ourworldindata.org/grapher/co2-concentration-long-term">Our World in Data</a>.</a>
+            
+            <center> Humanity's effect on global warming is undeniable. The Intergovernmental Panel on Climate Change stated that human activity that there is more than a 95% probability that human activity through the 20th and 21st century have warmed the planet. With the rise of fossil fuel consumption the 20th century saw levels of CO2 never seen in 800,000 years of tracked history. This unprecedented growth in CO2 levels and other greenhouse gasses has led to many effects, including higher temperatures, higher sea levels and shrinking ice caps and glaciers. Much of this has been brought on by the rise of urbanisation and the population boom of the 20th century.
+            <br>
+          <br>
+          The graphs below highlight the macro trends and effects of global warming through the 19th and 20th centuries. These trends will be picked up in regional city contexts in later sections to see how cities in India and China may be affected if behaviours aren't changed soon. All graphs are based on data from <a href="https://climate.nasa.gov/">NASA</a> and <a href="https://ourworldindata.org/grapher/co2-concentration-long-term">Our World in Data</a>.</a></center>
       </h2>
-<!-- Create a div where the graph will take place -->
-      <!-- text -->
-      <section>
-        <div class="right-side-div">
-          <div class="right-side-header" >
-              <span style="margin-left:5px;">
-                  Introduction
-              </span>
-          </div>
-          <p class="right-text">
-              If you’re familiar with the geography and economics of Europe, you might know that the more
-              economically developed countries are situated in western and northern Europe. On the map,
-              more
-              developed countries are shaded in green and less developed countries are in shades of pink,
-              denoting
-              each country’s GDP. Each color corresponds to a threshold set by the EU, which we’ll explain
-              in
-              subsequent sections.
-          </p>  
-<div id="container1">
+
+<section>
+    <div>
+<h2>
+        Key Trends of Global Warming from 1860 to Present Day
+</h2>
+</div>
+
+ <div class="leftcontentmap">
 <!-- Initialize a select button -->
 <select id="selectButton"></select>
-  <section id="my_dataviz_tooltip">
-</section>
-</div>
-<div class="right-side-div">
-    <div class="right-side-header" >
-        <span style="margin-left:5px;">
-            Introduction
-        </span>
+  <div id="my_dataviz_tooltip"></div></div>
+<div class = "rightcontentmap">
+    <div class = "text">
+    <p>The plot on the left shows five key indicators of global warming:
+        <ol>
+            <li><b>Sea Level Rise</b> - While influenced by other factors like seasonality, tides and cyclical trends in simple terms, as the Earth warms, more ice melts, and sea levels rise. The data in this graph has been gathered since 1993 and tracks sea levels using satellite imagery. The value shown in the plot is the change from the previous year.</li>            
+            <li><b>Global Land-Ocean Temperature Index</b> - This plot tracks the change in the average global temperature using 1951-1980 as the baseline. This data has been tracked since 1880, and alarmingly 19 of the hottest years have occurred since the year 2000. </li>
+            <li><b>Carbon Dioxide Concentration</b> - This may be the most alarming plot because, as mentioned, it has a significant effect on the other tracked phenomena. As demonstrated in the graph, the growth in atmospheric CO2 since 1950 has been enormous and is almost certainly attributable to human activities like urban growth, deforestation and fossil fuel consumption.</li>
+            <li><b>Average Arctic Sea Ice Area in September</b> - Tracked by satellites since 1979, the area covered by ice, while fluctuating, is on a downward trend. The highest recorded level 5.6 million square kilometres in 1987, and 1996 levels reached a new low in 2012 at 2.4 million square kilometres. While levels rebounded slightly in the following years, the 2020 levels again show a downward trend.</li>
+            <li><b>Antarctica Mass Variation</b> - Similar to the Arctic ice levels, this plot tracks how the mass lost in the Antarctic ice sheet since 2001. This plot shows less fluctuation than the Arctic plot and shows a steep downward trajectory. In the 20 years since 2001, the Antarctic ice sheet has lost over 2,500 gigatons of its ice mass.</li>
+        </ol>
+    </p>
     </div>
-<p class="right-text">
-    If you’re familiar with the geography and economics of Europe, you might know that the more
-    economically developed countries are situated in western and northern Europe. On the map,
-    more
-    developed countries are shaded in green and less developed countries are in shades of pink,
-    denoting
-    each country’s GDP. Each color corresponds to a threshold set by the EU, which we’ll explain
-    in
-    subsequent sections.
-</p>  
-<div id="container2">
-  <section id="my_dataviz_smallmultiples">
-  </section>
-  </div>
-      <script>
-          CSS.paintWorklet.addModule('./dist/rough-painter.bundled.js');
-      </script>
-    
+</div>
+</section>
+<section>
+<div class = "leftcontentmap1">
+<div class = "text">
+<p>
+    <br><br><br>
+    <h2>Normalised Key Trends 2002 to 2018</h2> 
+    <br>
+    The small multiples plot to the right explores the same variables as above but uses the same timeframe and normalised values to ease comparison.
+    <br></br>
+    Since 2002 without exception, each variable trends in a direction highly suggestive of global warming and climate change. Sea levels have risen, temperatures have gone up, carbon dioxide concentration has increased, while ice levels in the Arctic and the Antarctic have fallen.
+    <br><br>
+    As the global population increases and more of the world industrialises, an even heavier strain will be put on the Earth's resources and limits. This will be felt most acutely in the coming century in China and India as their combined populations of over 2.6 billion take their places as the likely dominant economies of the 21st century.
+</p>
+</div>
+</div> 
+<div class="rightcontentmap1">
+<div id="my_dataviz_smallmultiples"></div></div>    
+</section>
 </body>
 </html>

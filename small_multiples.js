@@ -5,7 +5,7 @@ var parseDate = d3.timeParse("%Y");
 
     // set the dimensions and margins of the graph
     var margin = {top: 30, right: 0, bottom: 30, left: 50},
-        width = 400 - margin.left - margin.right,
+        width = 250 - margin.left - margin.right,
         height = 150 - margin.top - margin.bottom;
     
     //Read the data
@@ -79,6 +79,7 @@ var parseDate = d3.timeParse("%Y");
             .attr("y", -5)
             .attr("x", 0)
             .text(function(d){ return(d.key)})
+            .style("font-size", "12.5px")
             .style("fill", function(d){ return color(d.key) });
   
     });
