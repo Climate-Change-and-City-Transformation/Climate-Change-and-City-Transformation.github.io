@@ -26,11 +26,11 @@
           z-index:1;
       }
     
-        ul.navbar2{
+         ul.navbar{
             position: fixed;
             top: 0;
             width: 100%;
-
+            z-index: 10;
             list-style-type: none;
             margin: 0;
             padding: 0;
@@ -43,7 +43,7 @@
         li{
             float: left;
         }
-        ul.navbar2 li a{
+        ul.navbar li a{
             display: block;
             color: white;
             text-align: center;
@@ -52,20 +52,21 @@
             font-family:'Montserrat',sans-serif;
             font-weight: bold;
         }
-        ul.navbar2 li a:hover{
-                      color: black  ;
+        ul.navbar li a:hover{
+                      color: white  ;
                 font-weight: bold;
-
+        background-color: gray;
         }
         .active {
         background-color: #64a19d;
         }
+
     </style>
 
   </style>
 
       <body>
-         <ul class="navbar2">
+         <ul class="navbar">
              <li style="float:right"><a href="index.html">Cities Transformation</a></li>
              <li><a  href="About.html">About</a></li>
              <li><a href="General View.html">General View</a></li>
