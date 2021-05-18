@@ -1,63 +1,219 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <style>
-        * {
-            margin: 0;
-        }
-        body {
-            margin: 0;
-            z-index:1;
-        }
-        /* Top navigation style */
-        ul.navbar{
+<html lang="zxx">
+   <head>
+   
+      <!--//meta tags ends here-->
+      <!--booststrap-->
+      <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" id="team">
+      <!--//booststrap end-->
+      <!-- font-awesome icons -->
+      <link href="css/fontawesome-all.min.css" rel="stylesheet" type="text/css" media="all">
+      <!-- //font-awesome icons -->
+      <!--stylesheets-->
+      <link href="css/style.css" rel='stylesheet' type='text/css' media="all">
+      <!--//stylesheets-->
+      <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+      <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+   </head>
+   <style>
+    
+      * {
+          margin: 0;
+          
+      }
+      body {
+          margin: 0;
+          z-index:1;
+      }
+    
+        ul.navbar2{
             position: fixed;
             top: 0;
             width: 100%;
-            z-index:2;
 
             list-style-type: none;
             margin: 0;
             padding: 0;
             overflow: hidden;
             
-            background-color: #202020;
+            background-color: rgb(0, 66, 66);
             
         }
 
         li{
             float: left;
         }
-        ul.navbar li a{
+        ul.navbar2 li a{
             display: block;
-            color: rgb(255, 255, 255);
+            color: white;
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
             font-family:'Montserrat',sans-serif;
+            font-weight: bold;
         }
-        ul.navbar li a:hover{
-        	background-color: rgb(153, 153, 153);
+        ul.navbar2 li a:hover{
+                      color: black  ;
+                font-weight: bold;
+
         }
         .active {
-            background-color: #005ce6;
+        background-color: #64a19d;
         }
-
     </style>
-</head>
-<body>
-    <!-- Top navigation div -->
-    <ul class="navbar">
-        <li style="float:right"><a  href="index.html">Home</a></li>
-        <li><a href="About.html">About</a></li>
-        <li><a href="Global Trends.html">Global Trends</a></li>
-        <li><a href="China.html">China</a></li>
-        <li><a href="India.html">India</a></li>
-        <li><a href="Future Impact.html">Future Impact</a></li>
-        <li><a class="active" href="Team.html">Team</a></li>
-    </ul>
-    <div id='testdiv'style="margin-top:50px">
-        <p> This is Team Page.</p>
-    </div>
+
+  </style>
+
+      <body>
+         <ul class="navbar2">
+             <li style="float:right"><a href="index.html">Cities Transformation</a></li>
+             <li><a  href="About.html">About</a></li>
+             <li><a href="General View.html">General View</a></li>
+             <li><a href="China.html">China</a></li>
+             <li><a href="India.html">India</a></li>
+             <li><a href="Future Impact.html">Future Impact</a></li>
+             <li><a class="active" href="Team.html">Team</a></li>
+         </ul>
+     </body>
+
+     <!--//booststrap end--><!--team-->
+      <section class="team py-lg-4 py-md-3 py-sm-3 py-3" id="team">
+         <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+            <div class="title text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">
+               <h3>Team Members</h3>
+            </div>
+            <div class="row">
+               <div class="col-lg-3 col-md-6 col-sm-6 team-list-team">
+                  <div class="team-member">
+                     <div class="team-img">
+                        <img src="images/t1.jpg" alt="" class="image-fluid">
+                     </div>
+                    
+                  </div>
+                  <div class="team-title">
+                     <h5 style="color:black">Daniel Rennie</h5>
+                     <a href="https://github.com/darennie" style="color:black">github</a>
+                  </div>
+               </div>
+               <div class="col-lg-3 col-md-6 col-sm-6 team-list-team">
+                  <div class="team-member">
+                     <div class="team-img">
+                        <img src="images/t2.jpg" alt="" class="image-fluid">
+                     </div>
+                  </div>
+                  <div class="team-title">
+                     <h5 style="color:black">Xudong Zhang</h5>
+                     <a href="https://github.com/xudong-zh"style="color:black">github</a>
+                  </div>
+               </div>
+               <div class="col-lg-3 col-md-6 col-sm-6 team-list-team">
+                  <div class="team-member">
+                     <div class="team-img">
+                        <img src="images/t3.jpg" alt="" class="image-fluid">
+                     </div>
+                    
+                  </div>
+                  <div class="team-title">
+                     <h5 style="color:black">Melissa Cotrina</h5>
+                     <a href="https://github.com/Sheedy21"style="color:black">github</a>
+                  </div>
+               </div>
+               <div class="col-lg-3 col-md-6 col-sm-6 team-list-team">
+                  <div class="team-member">
+                     <div class="team-img">
+                        <img src="images/t4.jpg" alt="" class="image-fluid">
+                     </div>
+                   
+                  <div class="team-title">
+                     <h5 style="color:black">Meng Chen</h5>
+                     <a href="https://github.com/MengChen98"style="color:black">github</a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+     <a href="https://github.com/Climate-Change-and-City-Transformation/Climate-Change-and-City-Transformation.github.io">groupwork github</a>
+     
+   
+      <script src='js/jquery-2.2.3.min.js'></script>
+      <!--//js working--> 
+      <!--Nav script scrollon--> 
+      <script>
+         $(window).scroll(function() {
+             if ($(document).scrollTop() > 150) {
+                 $('nav.pagescrollfix,nav.RWDpagescrollfix').addClass('shrink');
+             } else {
+                 $('nav.pagescrollfix,nav.RWDpagescrollfix').removeClass('shrink');
+             }
+         });
+      </script>
+      <!--//Nav script scrollon--> 
+      <!--responsiveslides banner-->
+      <script src="js/responsiveslides.min.js"></script>
+      <script>
+         // You can also use "$(window).load(function() {"
+         $(function () {
+         	// Slideshow 4
+         	$("#slider4").responsiveSlides({
+         		auto: true,
+         		pager:true ,
+         		nav:false,
+         		speed: 900,
+         		namespace: "callbacks",
+         		before: function () {
+         			$('.events').append("<li>before event fired.</li>");
+         		},
+         		after: function () {
+         			$('.events').append("<li>after event fired.</li>");
+         		}
+         	});
+         
+         });
+      </script>
+      <!--// responsiveslides banner-->	 
+      <!--About OnScroll-Number-Increase-JavaScript -->
+      <script src="js/jquery.waypoints.min.js"></script>
+      <script src="js/jquery.countup.js"></script>
+      <script>
+         $('.counter').countUp();
+      </script>
+      <!-- //OnScroll-Number-Increase-JavaScript -->  
+      <!-- start-smoth-scrolling -->
+      <script src="js/move-top.js"></script>
+      <script src="js/easing.js"></script>
+      <script>
+         jQuery(document).ready(function ($) {
+         	$(".scroll").click(function (event) {
+         		event.preventDefault();
+         		$('html,body').animate({
+         			scrollTop: $(this.hash).offset().top
+         		}, 900);
+         	});
+         });
+      </script>
+      <!-- start-smoth-scrolling -->
+      <!-- here stars scrolling icon -->
+      <script>
+         $(document).ready(function () {
+         
+         	var defaults = {
+         		containerID: 'toTop', // fading element id
+         		containerHoverID: 'toTopHover', // fading element hover id
+         		scrollSpeed: 1100,
+         		easingType: 'linear'
+         	};
+         
+         
+         	$().UItoTop({
+         		easingType: 'easeOutQuart'
+         	});
+         
+         });
+      </script>
+      <!-- //here ends scrolling icon -->
+      <!--bootstrap working-->
+      <script src="js/bootstrap.min.js"></script>
+      <!-- //bootstrap working-->
+
 </body>
 </html>
