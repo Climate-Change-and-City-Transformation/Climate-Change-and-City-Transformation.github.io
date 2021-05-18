@@ -102,10 +102,11 @@
           }
 
         .title {
-            font-size: 45px;
+           font-size: 45px;
             text-align: center;
-            font-weight:bold;
+            font-weight:lighter;
             font-family:'Montserrat',sans-serif;
+            font-weight: bold;
             color:rgb(0, 0, 0);
         }
 
@@ -136,7 +137,7 @@
         }
 
         .middleThings{
-            width: 65%;
+            width: 50%;
             margin: 0 auto;
         }
 
@@ -333,12 +334,12 @@
         }
         .rough-box-title {
             margin: 0 auto;
-            margin-top:5px;
-            margin-bottom:5px;
+            margin-top:70px;
+            margin-bottom:35px;
             padding: 20px;
             color: rgb(255, 255, 255);
             background-image: paint(rough-painter);
-            font-family:'Montserrat',sans-serif;
+
         }
         .rough-box-title {
             --rough-border-width: 3;
@@ -1224,7 +1225,7 @@ Plotly.newPlot('barchart', data, layout);
  
 </div>
       <script>
-        CSS.paintWorklet.addModule('./js/rough-painter.bundled.js');
+        CSS.paintWorklet.addModule('./dist/rough-painter.bundled.js');
     </script>
 </body>
 </html>
