@@ -230,7 +230,7 @@ class Scatter extends China {
     //y label
     this.ChartArea.append("text")
       .attr("transform", `translate(${this.innerW / 2},${this.innerH + 30})`)
-      .text("Co2");
+      .text("The Rates of Emission");
     //x label
     this.ChartArea.append("text")
       .attr("transform", `translate(${-125},${this.innerH / 2}) rotate(270)`)
