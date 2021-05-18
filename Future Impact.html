@@ -10,19 +10,31 @@
 <script src="openlayers/ol.js"></script>
 
 <style>
+ * {
+      margin: 0;
+   }
+   body { 
+     height: 100%; 
+     margin: 0px; 
+     padding: 0px 
+     }
+   #map { 
+    width:100%;
+    height:100%;
+    position: absolute;
+    top: 46px;
+     } 
 
-#map { position: absolute; top: 45px;   width: 1550px; height:750px;
-
-} 
 
 #slider_div {
   z-index: 10;  
-  position: absolute;  
+  position: fixed;  
   right: 0;  
-  top: 45px;  
-  width: 400px;
+  top: 46px;  
+  width: 450px;
   padding-left: 10px;
   background: rgba(255, 255, 255, 0.9);
+  font-family:'Montserrat',sans-serif;
 }
 
 #level {
@@ -30,32 +42,7 @@
   width: 200px;
   vertical-align: text-bottom;
 }
-
 </style>
-</head>
-
-<body>
-
-<div id="slider_div">
-<h3>Simulation of Potential Sea Level Rise Scenarios</h3>
-Range: <select id="range_select" onchange="range_select_change(this);"></select>
-<br>
-<svg id="levelslider" xmlns="http://www.w3.org/2000/svg" version="1.1" 
-width="350" height="500">
-</svg>
-<font size="1"><br>Notice: This map is not meant as a planning tool or as a prediction for any precise location and is provided without any accuracy or suitability for any particular purpose.</font>
-<br>
-<br>
-</div>
-
-<div id="map" class="map"></div>
-
-<div id="attributions">
-Sources: 
-<a href="https://maps.wikimedia.org/">map</a>, 
-<a href="https://aws.amazon.com/public-datasets/terrain/">terrain</a>,
-<a href="https://openlayers.org/en/latest/examples/sea-level.html">openlayers</a>
-</div>
 <style>
   /* Top navigation style */
   ul.navbar{
@@ -82,7 +69,7 @@ Sources:
       text-align: center;
       padding: 14px 16px;
       text-decoration: none;
-      font-family:cursive;
+      font-family:'Montserrat',sans-serif;
   }
   ul.navbar li a:hover{
     background-color: rgb(153, 153, 153);
@@ -91,17 +78,43 @@ Sources:
       background-color: #005ce6;
   }
 </style>
+</head>
+
+<body>
+    <!-- Top navigation div -->
+    <ul class="navbar">
+      <li style="float:right"><a href="index.html">Home</a></li>
+      <li><a href="About.html">About</a></li>
+      <li><a href="Global Trends.html">Global Trends</a></li>
+      <li><a href="China.html">China</a></li>
+      <li><a href="India.html">India</a></li>
+      <li><a class="active" href="Future Impact.html">Future Impact</a></li>
+      <li><a href="Team.html">Team</a></li>
+  </ul>
+
+<div id="slider_div">
+<h3 style="margin-bottom:20px">Simulation of Potential Sea Level Rise Scenarios</h3>
+Range: <select id="range_select" onchange="range_select_change(this);"></select>
+<br>
+<svg id="levelslider" xmlns="http://www.w3.org/2000/svg" version="1.1" 
+width="350" height="500">
+</svg>
+<font size="1"><br>Notice: This map is not meant as a planning tool or as a prediction for any precise location and is provided without any accuracy or suitability for any particular purpose.</font>
+<br>
+<br>
+</div>
+
+<div id="map" class="map"></div>
+
+<div id="attributions">
+Sources: 
+<a href="https://maps.wikimedia.org/">map</a>, 
+<a href="https://aws.amazon.com/public-datasets/terrain/">terrain</a>,
+<a href="https://openlayers.org/en/latest/examples/sea-level.html">openlayers</a>
+</div>
+
     
-  <!-- Top navigation div -->
-  <ul class="navbar">
-    <li style="float:right"><a href="index.html">Home</a></li>
-    <li><a href="About.html">About</a></li>
-    <li><a href="Global Trends.html">Global Trends</a></li>
-    <li><a href="China.html">China</a></li>
-    <li><a href="India.html">India</a></li>
-    <li><a class="active" href="Future Impact.html">Future Impact</a></li>
-    <li><a href="Team.html">Team</a></li>
-</ul>
+
 <script>
 ///////////////////////////////////////////////////////////////////////////////
 // Global vars

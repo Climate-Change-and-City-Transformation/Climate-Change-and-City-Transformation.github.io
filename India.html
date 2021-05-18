@@ -462,17 +462,18 @@
 
 <style>
   /* Top navigation style */
-   ul.navbar{
+         ul.navbar{
             position: fixed;
             top: 0;
             width: 100%;
+            z-index:2;
 
             list-style-type: none;
             margin: 0;
             padding: 0;
             overflow: hidden;
             
-            background-color: white;
+            background-color: #202020;
             
         }
 
@@ -481,20 +482,17 @@
         }
         ul.navbar li a{
             display: block;
-            color: rgb(0, 66, 66);
+            color: rgb(255, 255, 255);
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
             font-family:'Montserrat',sans-serif;
-            font-weight: bold;
         }
         ul.navbar li a:hover{
-                      color: #64a19d  ;
-                font-weight: bold;
-
+        	background-color: rgb(153, 153, 153);
         }
         .active {
-        background-color: #64a19d;
+            background-color: #005ce6;
         }
 
   </style>
