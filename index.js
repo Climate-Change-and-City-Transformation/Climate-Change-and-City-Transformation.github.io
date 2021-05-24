@@ -1,4 +1,3 @@
-//父类,初始化数据和容器
 class China {
   constructor(id, data, title) {
     this.title = title;
@@ -467,7 +466,6 @@ class Legend {
     }
   }
 
-  //利用渐变色 做diviring
   initSvg() {
     this.svg = this.container
       .selectAll(".legend")
@@ -638,7 +636,7 @@ async function main() {
 
   let scatter = new Scatter("map", data);
 
-  //注册事件
+
   var scrollAction = { x: undefined, y: undefined },
     scrollDirection;
 
@@ -658,10 +656,9 @@ async function main() {
     let height = e.target.scrollHeight;
     let top = e.target.scrollTop;
 
-    //scroll bottom底部事件
+
     let chart = d3.select(".chart");
 
-    //监听鼠标滑轮向上向下
     scrollFunc();
 
     //change to city
@@ -731,5 +728,4 @@ async function main() {
     //
   });
 }
-//入口函数
 main();
