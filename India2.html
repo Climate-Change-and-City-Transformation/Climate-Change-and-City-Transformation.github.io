@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Cities and Climate Change - A Look to the Future</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/d3.min.js"></script>
+    <script src="./js/d3-tip-v6.js"></script>
+    <link rel="stylesheet" href="./js/d3-tip.css">
+    <script src="https://unpkg.com/flubber@0.3.0"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+
+
+
+    <meta name="robots" content="noindex">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="http://d3js.org/d3.v4.js"></script>
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+     <script src="https://d3js.org/queue.v3.min.js"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
+
+    <style>
+     
+        .middleThings{
+            width: 50%;
+            margin: 0 auto;
+        }
+        .middlechart{
+            width: 50%;
+            margin: 0 auto;
+        }
+        .midHeader{
+            background-color:gray;
+            margin-top:50px;
+            margin-bottom:10px;
+            text-align: center;
+            color:rgb(255, 255, 255);
+            font-size:25px;
+            font-family:'Montserrat',sans-serif;
+            vertical-align:middle;
+            font-weight:bold;
+            margin-left:10px;
+        }
+        
+        .mid-text{
+            font-size: 20px;
+            font-weight:lighter;
+            font-family:'Montserrat',sans-serif;
+            margin-top:35px;
+            margin-bottom:35px;
+            margin-left:10px;
+            width:100%;
+        }
+
+        .button-container{
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+
+        * {
+            margin: 0;
+        }
+
+        .chart {
+            height: 75vh;
+            display: grid;
+            grid-template-rows: 10% 80%;
+            
+            float: center;
+            margin: 0 auto;
+
+        }
+
+        .chart1 {
+            width: 100%;
+            height: 90vh;
+            display: grid;
+            grid-template-rows: 10% 80%;
+            background-color: #f4f4f4;
+            float: center;
+
+        }
+
+        .chart2 {
+            display: grid;
+            grid-template-rows: 10% 80%;
+            
+            float: center
+
+        }
+
+        aside.toolbox1 {
+          width: 100%;
+            height: 90vh;
+            top:10px;
+            bottom:80px;
+            left:10px;
+        }
+
+        #serieDiv {
+            width: 100%;
+        }
+
+
+        #bubbleDiv {
+            width: 100%;
+        }
+
+        #map {
+            width: 100%;
+        }
+
+
+
+        .domain {
+            stroke: lightgray;
+        }
+
+        body {
+            margin: 0;
+            box-sizing: content-box;
+
+        }
+
+        .year {
+            font-size: 90px;
+            font-family: 'Montserrat',sans-serif;
+            font-variant-numeric: proportional-nums;
+            opacity: 0.3;
+          }
+
+        .title {
+            font-size: 45px;
+            text-align: center;
+            font-weight:lighter;
+            font-family:'Montserrat',sans-serif;
+            font-weight: bold;
+            color:rgb(0, 0, 0);
+        }
+
+
+
+        .text{
+            font-size: 20px;
+            text-align: center;
+            font-weight:lighter;
+            font-family:'Montserrat',sans-serif;
+            margin-top:35px;
+            margin-bottom:35px;
+        }
+
+        
+
+
+        #chartArea {
+            display: grid;
+            grid-template-columns: 70% 25%;
+            height: 99vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+
+
+        }
+
+
+         #chartArea1 {
+            display: grid;
+            grid-template-columns: 25% 70% ;
+            height: 75vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+            padding-right: 18px;
+            padding-left: 35px;
+        }
+
+        #chartArea2 {
+            display: grid;
+            grid-template-columns: 55% 40% ;
+            height: 85vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+            padding-right: 50px;
+            padding-left: 55px;
+        }
+
+        #chartArea3 {
+            float: center;
+            display: grid;
+            grid-template-columns: 50% 35%;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+            padding-right: 5px;
+            padding-left: 55px;
+            padding-top: 0px
+
+        }
+
+
+        #container1 {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+
+        }
+
+        .rough-box {
+            max-width: 500px;
+            margin: 0 auto;
+            margin-bottom:35px;
+            padding: 20px;
+            color: rgb(255, 255, 255);
+            background-image: paint(rough-painter);
+        }
+        .rough-box {
+            --rough-border-width: 3;
+            --rough-fill: rgb(194, 188, 188);
+            --rough-fill-weight: 9;
+            --rough-fill-style: zigzag;
+        }
+        .rough-box-title {
+            margin: 0 auto;
+            margin-top:70px;
+            margin-bottom:35px;
+            padding: 20px;
+            color: rgb(255, 255, 255);
+            background-image: paint(rough-painter);
+
+        }
+        .rough-box-title {
+            --rough-border-width: 3;
+            --rough-fill: rgb(219, 219, 219); 
+            --rough-fill-weight: 9;
+            --rough-fill-style: zigzag;
+        }
+     
+
+    .year {
+      font-size: 50px;
+      font-family: fantasy;
+      font-variant-numeric: proportional-nums;
+      opacity: 0.6;
+          }
+
+
+   .districts {
+                fill: rgb(199,199,199);
+                stroke: #FFFFFF;
+                stroke-width: 0.5px;
+                margin-top: 10px;
+                margin-bottom: 30px;
+            }
+            
+    .country {
+      font-size: 50px;
+      font-family: 'Montserrat',sans-serif;
+      font-variant-numeric: proportional-nums;
+      opacity: 0.3
+    }
+
+    .playpauseBtn {
+      position:relative;
+      transition: .5s ease;
+      top: -55px;
+      left: 0px;
+      right: -0px;
+      bottom: 10px;
+      cursor: pointer;
+      opacity: 0.7;
+
+    }
+
+
+   .sizeLgn {
+      position:relative;
+      top: -620px;
+      left: 30px;
+      right: 10px;
+      bottom: 10px;
+    }
+
+
+    .colorLgn {
+      position:relative;
+      top: -720px;
+      left: 500px;
+      right: 10px;
+      bottom: 10px;
+    }
+
+    .slider {
+      position:relative;
+      cursor: pointer;
+      width: 600px;
+      stroke: transparent;
+      top: -930%;
+      left: 50px;
+      right: -320px;
+      bottom: 0px;
+    }
+
+    .slider {
+      -webkit-appearance: none;
+      width: 540px;
+      height: 20px;
+      background: #d3d3d3;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+
+    .slider:hover {
+      opacity: 1;
+    }
+
+  
+
+  
+  .tooltip {
+  position: fixed;
+  padding: 7px;
+  font-size: 0.9em;
+  pointer-events: none;
+  background: #202020;
+  border-radius: 4px;
+  color: white;
+  font-family: Verdana;
+
+
+  -moz-box-shadow:    3px 3px 10px 0px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.25);
+  box-shadow:         3px 3px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+.tooltip p {
+  margin: 0;
+  padding: 0;
+}
+
+.tooltip table {
+  margin: 0;
+  padding: 0;
+  border-collapse: collapse;
+}
+        
+        
+    </style>
+    <style>  
+        /* Top navigation style */
+        ul.navbar{
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index:10;
+
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            
+            background-color: rgb(0, 66, 66);
+            
+        }
+
+        li{
+            float: left;
+        }
+        ul.navbar li a{
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-family:'Montserrat',sans-serif;
+            font-weight: bold;
+        }
+        ul.navbar li a:hover{
+            color: white  ;
+            font-weight: bold;
+            background-color: gray;
+        }
+        .active {
+        background-color: #64a19d;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top navigation div -->
+    <ul class="navbar">
+        <li style="float:right"><a href="index.html">Home</a></li>
+        <li><a href="About.html">About</a></li>
+        <li><a href="Global Trends.html">Global Trends</a></li>
+        <li><a href="China.html">China</a></li>
+        <li><a class="active"href="India2.html">India</a></li>
+        <li><a href="Future Impact.html">Future Impact</a></li>
+        <li><a href="Team.html">Team</a></li>
+    </ul>
+ 
+    
+    <article>
+        <div class="middleThings">
+            <div class="rough-box-title">
+                <h1 class="title">
+                    The impact of climate change in India
+                </h1>
+            </div>
+            
+            
+            <p class="mid-text">
+                India has the second-highest population globally and is deeply affected by a high poverty 
+                level across its population. Climate change has already and will continue to affect different 
+                parts of its economy in negative ways. 
+            </p>
+            <p class="mid-text">
+                Even though India's CO2 emissions are low compared to other countries, the exposure is so high 
+                that is manifested in different ways such as natural disasters. In this sense, India is on track 
+                to meet its targets for the Paris Agreement in Climate Change.
+            </p>
+            <p class="mid-text">
+                This section will further explore how India has been affected by climate change to date, what 
+                it could mean for the country in the future and India's role in the global fight against climate change. 
+            </p>
+            
+        </div>
+        
+        <!-- others -->
+        <div class="middleThings">
+            <div class="midHeader">
+                <span>
+                    Top 10 Countries by Electricity domestic consumption
+                </span>
+            </div>
+            <p class="mid-text">
+                Among the countries that consume the most electricity domestically, India holds the third place as of 2019, following a steady increase 
+              since the mid-2000s.
+            </p>
+
+        </div>
+        <div class="middlechart">
+            <section class="chart">
+                <div class="title"></div>
+                <div id = "serieDiv"></div>
+            </section>
+        </div>
+
+        <div class="middleThings">
+            <div class="midHeader">
+                <span>
+                    Natural disasters in India. 2000 - 2020
+                </span>
+            </div>
+            <p class="mid-text">
+                Unfortunately, deadly heatwaves are becoming less and less unexpected in India, especially 
+                in Kolkata (Calcutta), when a heatwave killed over 2,000 people in 2015.
+            </p>
+        </div>
+        <div class="middlechart">
+            <section class="chart2">
+                <div id = "bubbleDiv"></div>
+            </section>
+        </div>
+
+        <div class="middleThings">
+            <div class="midHeader">
+                <span>
+                    Average temperatures in India's cities (2000 - 2020)
+                </span>
+            </div>
+            <p class="mid-text">
+                According to the Intergovernmental Panel on Climate Change (IPCC), the increase of 1.5ºC in the global 
+                average temperature will likely further aggravate India's current environmental situation. 
+            </p>
+        </div>
+        <div class="middlechart">
+            <div id="barchart" style="text-align: center;"></div>
+        </div>
+        
+        <div class="middlechart">
+            <div id = "map" style="text-align: center;"></div>
+
+            <div class="playpauseBtn">
+                <button type="submit" style="background-color:transparent; border-color:transparent;" id="playpauseBtn";>
+                 <img src="./data/India/btnPlay.png" style="height:35px;width:35px" alt="Submit">
+                </button>
+             </div>
+
+            <div class="sizeLgn">
+                <img src="./data/India/size.jpg" style="height:120px;width:150px" alt="Submit">
+            </div>
+            <div class="colorLgn">
+                <img src="./data/India/color1.jpg" style="height:50px;width:250px" alt="Submit">
+            </div>
+        </div>
+       
+    </article>
+
+    <script>
+        
+
+        ////////////////////////////////////////////////////
+        //Series graph - Electricity consumption
+   
+         d3.csv("./data/India/electricity_consumption.csv", function(err, rows){
+   
+     function unpack(rows, key) {
+     return rows.map(function(row) { return row[key]; });
+   }
+   
+   
+   var trace1 = {type: "scatter",name:'China',x:unpack(rows,'year'),y:unpack(rows,'eChina'),line: {color:'#11174B'}, mode: 'lines+markers',  type: 'scatter'}
+   var trace2 = {type: "scatter", name: 'United States', x: unpack(rows, 'year'), y: unpack(rows, 'eUS'), line: {color: '#162065'}, mode: 'lines+markers',  type: 'scatter'}
+   var trace3 = {type: "scatter", name: 'India', x: unpack(rows, 'year'), y: unpack(rows, 'eIndia'), line: {color: 'red'}, mode: 'lines+markers',  type: 'scatter'}
+   var trace4 = {type: "scatter", name: 'Russia', x: unpack(rows, 'year'), y: unpack(rows, 'eRussia'), line: {color: '#2D5E94'}, mode: 'lines+markers',  type: 'scatter'}
+   var trace5 = {type: "scatter", name: 'Japan', x: unpack(rows, 'year'), y: unpack(rows, 'eJapan'), line: {color: '#3D91BE'}, mode: 'lines+markers',  type: 'scatter'}
+   var trace6 = {type: "scatter", name: 'South Korea', x: unpack(rows, 'year'), y: unpack(rows, 'eSK'), line: {color: '#46AACE'}, mode: 'lines+markers',  type: 'scatter'}
+   var trace7 = {type: "scatter", name: 'Canada', x: unpack(rows, 'year'), y: unpack(rows, 'eCanada'), line: {color: '#62BED2'}, mode: 'lines+markers',  type: 'scatter'}
+   var trace8 = {type: "scatter", name: 'Brazil', x: unpack(rows, 'year'), y: unpack(rows, 'eBrazil'), line: {color: '#8ACDCE'}, mode: 'lines+markers',  type: 'scatter'}
+   var trace9 = {type: "scatter", name: 'Germany', x: unpack(rows, 'year'), y: unpack(rows, 'eGermany'), line: {color: '#B3DDCC'}, mode: 'lines+markers',  type: 'scatter'}
+   var trace10 = {type: "scatter", name: 'France', x: unpack(rows, 'year'), y: unpack(rows, 'eFrance'), line: {color: '#DCECC9'}, mode: 'lines+markers',  type: 'scatter'}
+   
+   var data = [trace1,trace2,trace3,trace4,trace5,trace6,trace7,trace8,trace9,trace10];
+   
+   var layout = {
+     autosize: true,
+       margin: {
+       l: 80,
+       r: 70,
+       b: 10,
+       t: 10,
+     },
+     paper_bgcolor: 'transparent',
+     plot_bgcolor: 'transparent',
+   
+     borderwidth: 2,
+   legend: {
+       font: {
+           family: 'Verdana',
+           size: 15,
+           color: '#212121'
+         }
+     },
+    xaxis: {
+       autorange: true,
+       range: ['1990', '2019'],
+       
+       rangeslider: {range: ['1990', '2019']},
+       type: 'date',
+        tickfont: {
+         family: 'Verdana',
+         size: 15,
+         color: '#212121'
+       },
+       linecolor: 'white', 
+       tickcolor: 'white'
+     },
+     yaxis: {
+     title: {
+         text: 'Terawatt hour (TWh)',
+         font: {
+           family: 'Verdana',
+           size: 15,
+           color: '#212121'
+         }
+       },
+       //autorange: true,
+       autorange: true,
+       mode: 'markers',
+       type: 'linear',
+       tickfont: {
+         family: 'Verdana',
+         size: 15,
+         color: '#212121'
+       },
+       linecolor: 'white', 
+       tickcolor: 'white'  
+     },
+     
+   };
+   
+   Plotly.newPlot('serieDiv', data, layout);
+   
+        });
+   
+   
+   ////////////////////////////////////////////////////
+   //Buble graph - Natural disasters
+   
+   d3.csv("./data/India/natural_disasters.csv", function(err, rows){
+   
+     function unpack(rows, key) {
+     return rows.map(function(row) { return row[key]; });
+   }
+   
+     var data = [{
+         type: 'scatter',
+         mode: 'markers',
+         x: unpack(rows, 'Year'),
+         y: unpack(rows, 'deaths'),
+         text: unpack(rows, 'DisasterType'),
+         marker: {
+           size: unpack(rows, 'deaths'),
+           sizemode: "area",
+           line: {
+               color: 'black'
+           }
+           //sizeref: 200000
+         },
+         transforms: [
+           {
+           type: 'groupby',
+           groups: unpack(rows, 'DisasterType'),
+           styles: [
+             {target: 'Flood', value: {marker: {color: '#a6611a'}}},
+             {target: 'Extreme temp.', value: {marker: {color: '#D1C34A'}}},
+             {target: 'Storm', value: {marker: {color: '#B8AEB3'}}},
+             {target: 'Landslide', value: {marker: {color: '#303590'}}},
+             {target: 'Earthquake', value: {marker: {color: '#018571'}}}
+             
+           ]
+     }]
+       }]
+   
+   var layout = {
+       autosize: true,
+       height:500,
+     margin: {
+       l: 5,
+       r: 5,
+       b: 50,
+       t: 40,
+     },
+   
+     paper_bgcolor: 'transparent',
+     plot_bgcolor: 'transparent',
+   
+     borderwidth: 2,
+   legend: {
+       font: {
+           family: 'Verdana',
+           size: 15,
+           color: '#212121'
+         }
+     },
+   
+   xaxis: {
+       autorange: true,
+         tickfont: {
+         family: 'Verdana',
+         size: 15,
+         color: '#212121'
+       },
+       linecolor: 'dark gray', 
+       tickcolor: 'white'
+     },
+   
+     yaxis: {
+       type: 'log',
+       visible: false
+     }
+   }
+   
+   Plotly.newPlot('bubbleDiv', data, layout)
+   
+   
+   });
+   
+    </script>
+   
+           
+     <!-- /////////////////////////////////////// -->
+     <!-- Temperature charts -->
+       
+   
+   <div class = "demo">
+       <script>
+   
+         var margin = {top: 0, right: 0, bottom: 0, left: 0};
+        
+         var selected_country = [];
+         var countrySelect = [];
+         var checkedArr = [];
+         var click  = 0
+         var width = 800,   height = 600;
+         var playpauseFlag = 0
+   
+   
+         tooltip = d3.select("#map").append("div")
+     .attr("class", "tooltip")
+     .style("opacity", 0);
+   
+   
+   
+         //Create SVG element for bubble plot
+         var svg = d3.select("#map")
+               .append("svg")
+               .attr("width", width)
+               .attr("height", height)
+               .append("g")
+               
+               //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+   
+               var projection = d3.geo.mercator() // mercator makes it easy to center on specific lat/long
+                   .scale(1060)
+                   .center([85, 23.5]) 
+                   //.translate([ (outer_width / 2), outer_height / 2])
+                   .precision(.1);
+   
+   
+               var pathGenerator = d3.geo.path()
+                   .projection(projection);
+   
+               var colorScale  = d3.scale.category10();
+   
+               var radiusScale = d3.scale.sqrt()
+                   .range([2, 10]);
+   
+         // Set the initial years to be displayed.
+         display_year = 1;
+   
+   
+         // function to filter data by year
+         function yearFilter(value) {
+           return(value.Year == display_year)
+           console.log(value.year)
+         }
+   
+   
+         // Linear scale for population on radius
+         var rScale = d3.scale.linear().domain([7000, 15000000]).range([10,50]);
+   
+   
+         // Ordinal Scaling of Regions on to Colors of circles.
+         var yearScale = d3.scale.ordinal()
+             .domain([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21])
+         .range(["May 2000", "May 2001","May 2002","May 2003", "May 2004", "May 2005", "May 2006", "May 2007", "May 2008", "May 2009", "May 2010", "May 2011", "May 2012", "May 2013","May 2014","May 2015", "May 2016", "May 2017", "May 2018", "May 2019", "May 2020"]);
+       
+         
+   
+         //Initialization of display_year text floating in the graph
+         svg.append("text")
+            .attr("y", 530)
+            .attr("x", 50)
+            .style("text-anchor", "start")
+            .attr("id", "year")
+            .attr("class", "year")
+            .attr("opacity", 0.5)
+            .text(yearScale(display_year));    
+      
+         // Ordinal Scaling of Regions on to Colors of circles.
+   
+       var fill = d3.scale.linear().domain([20,25,27.5,31,32.5, 33, 35, 36]).range(["#BD70F2","#013FF2","#13EF98","#6FDD00","#EFE4B0", "#FFFF00", "#F79F48", "#FF0000", "#800000"]);
+   
+       // function to generate vizulization
+       function generateViz() {
+   
+       // Filtering with no of years
+          var filtered_dataset = dataset.filter(yearFilter);
+   
+       //filtering dataset with country number1
+          var selected_country = filtered_dataset.filter(function(d,i)
+          {
+            if(d["Country"] == checkedArr[0] )
+            {
+              return d;
+            }
+          });
+   
+          //Data join for generation trace
+          var trace = svg.selectAll("circle").data(filtered_dataset);
+   
+         //Perform data join
+         var circles = svg.selectAll(".data_circles")
+                          .data(filtered_dataset, function key(d) {
+                            countrySelect.push(d.Country);
+                           return d.Country
+                     });
+   
+         if (click == 1)
+         {
+           trace.remove();
+           click = 0;
+         }
+   
+     //Update Selection
+           circles
+           .on("mouseover", mouseHoverOn)
+               .on("mouseout", mouseHoverOff)
+               //.transition()
+         //     .duration(1000)
+         //     .ease("linear")
+              .attr("cx", function(d) {
+                  return projection([+d.longitude, +d.latitude])[0];  })
+              .attr("cy", function(d) {
+                  return projection([+d.longitude, +d.latitude])[1]; })
+              .attr("r", function(d) {
+                  return rScale(+d.pop); })
+              //.style("stroke", function(d) {return fill(+d.temperature); })
+              .style("stroke", "black")
+               .style("stroke-width", 2)
+              //.attr("opacity", 0.8)
+              .style("stroke-opacity", 1.5)
+              .attr("fill", function(d) {
+                  return fill(+d.temperature);
+              });
+   
+          // Text label for Year in background
+          svg.select("#year")
+              .attr("y", 530)
+              .attr("x", 50)
+              .style("text-anchor", "start")
+              .attr("class", "year")
+            .text(yearScale(display_year));
+   
+           
+       // create new element in dataset
+         circles.enter()
+                .append("circle")
+                .on("mouseover", mouseHoverOn)
+               .on("mouseout", mouseHoverOff)
+                .attr("class", "data_circles")
+                .attr("cx", function(d) {
+                       return projection([+d.longitude, +d.latitude])[0];  })
+                .attr("cy", function(d) {
+                       return projection([+d.longitude, +d.latitude])[1];  })
+                .attr("r", function(d) {
+                       return rScale(+d.pop); })
+                .attr("stroke-opacity", 1.5)
+                .attr("fill", function(d) {
+                       return fill(+d.temperature); })
+                //.attr("opacity", 0.8)
+                //.style("stroke", function(d) {return fill(+d.temperature); });
+                .style("stroke", "black");
+   
+         //Handling mouse hover functionality
+         var mouseHoverOn = function(d) {
+         //change the opacity of background
+         tooltip
+           .transition()
+           .duration(250)
+           .style("opacity",1)
+           tooltip.html("<p><strong>" + d.Country + "</strong></p>" +
+         "<table><tbody><tr><td class='wide'>Population:</td><td>" + d.pop + "</td></tr>" +
+         "<tr><td>Temperature:</td><td>" + d.temperature + "</td></tr>" +
+         "</tbody></table>")
+           .style("left", (d3.mouse(this)[0]+10) + "px")
+           .style("top", (d3.mouse(this)[1]) + "px")  
+       };
+   
+   
+   
+           //Remove the opacity effect and make all circle visible
+              var mouseHoverOff = function(d) {
+                         tooltip.transition()
+         .duration(250)
+         .style("opacity", 0);
+          };
+   
+   
+   
+   
+   
+   
+           // to generate the static trace for a pirticular country
+            var mouseclick = function(d){
+            country = d.Country
+            click = 1
+            var country_data = dataset.filter(countryFilter);
+   
+            //remove all the present circles
+            circles.remove();
+   
+            var trace = svg.selectAll("circle")
+            .data(country_data)
+            trace.attr("cx", function(d) {
+                 return projection([+d.longitude, +d.latitude])[0]; })
+           .attr("cy", function(d) {
+                 return projection([+d.longitude, +d.latitude])[1]; })
+           .attr("r", function(d) {
+                 return rScale(+d.pop); })
+           //.style("stroke", function(d) {return fill(+d.temperature); })
+           .style("stroke", "black")
+           .style("stroke-width", 2)
+           //.attr("opacity", 0.8)
+           .style("stroke-opacity", 1.5)
+           .attr("fill", function(d) {
+                  return fill(+d.temperature); });
+            }
+            
+   
+          circles.on("mouseover", mouseHoverOn);
+          circles.on("mouseout", mouseHoverOff);
+          circles.on("click", mouseclick);
+          circles.exit()
+          .remove();
+          pillar1.exit()
+          .remove();
+          s_pillar1.exit()
+          .remove();
+           }
+   
+   
+   
+     
+   
+     </script>
+   
+   
+     <script>
+   
+       makeMap();
+   
+               function makeMap() {
+                   d3.json("./data/India/india.geojson", function(error, districts) {
+                       if (error) return console.error(error);
+   
+                       svg.selectAll("path")
+                           .data(districts.features)
+                         .enter().append("path")
+                           .attr("class", "districts")
+                           .attr("opacity", 0.8)
+                           .attr("d", pathGenerator)
+                           
+                           
+   
+                       gethistoricData();
+                   }); 
+               }
+   
+   
+   
+   
+   
+       // Read file and call generateViz() function
+       function gethistoricData() {
+         d3.csv("./data/India/temperatures5.csv", function(error, data) {
+             if (error) {
+                 console.log("Something went wrong");
+             } else {
+                 console.log("Data has been loaded");
+                 dataset = data;
+                 generateViz();
+                 countryList();
+   
+             }
+         })
+     };
+   
+       //Button that exhibits both play and pause functionality with the help of playpauseFlag variable
+       d3.select(".playpauseBtn")
+              .on("click", function() {
+        if (playpauseFlag == 0) {
+        playpauseFlag = 1
+        var buttonPause = document.getElementById("playpauseBtn");
+        buttonPause.innerHTML = '<img src="./data/India/btnPause.png" style="height:35px;width:35px" alt="Submit"/>';
+        playInterval = setInterval(function() {
+                           display_year++;
+                       if (display_year > 21) {
+                           display_year = 1;
+                       }
+                       document.getElementById("year").value = display_year;
+                       generateViz();
+                   }, 1000);
+                 }
+       else {
+        playpauseFlag = 0
+        var buttonPause = document.getElementById("playpauseBtn");
+        buttonPause.innerHTML = '<img src="./data/India/btnPlay.png" style="height:35px;width:35px" alt="Submit"/>';
+        clearInterval(playInterval)
+        generateViz()
+     }
+   });
+   
+       //slider functionality
+       function sliderValue(value) {
+           display_year = value;
+         playpauseFlag = 0
+         var buttonPause = document.getElementById("playpauseBtn");
+         buttonPause.innerHTML = '<img src="./data/India/btnPlay.png" style="height:35px;width:35px" alt="Submit"/>';
+         clearInterval(playInterval)
+         var sliderCreated = document.getElementById("year")
+           generateViz();
+           clearInterval(playInterval);
+       }
+       var sliderCreated = document.getElementById("year")
+   
+       // document.getElementById("map").style.backgroundImage = "url('./data/India/temperatureColor1.jpg')";
+   
+   
+    </script>
+   
+   <script type="text/javascript">
+   
+   var trace1 = {
+     x: ['1999','2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020'],
+     y: [0,0,.2999992,.8999996,.1999989,0,-.3999996,.3999996,.5,0,.6000004,1,.3999996,.6000004,.6999989,-.3000011,.6000004,.5,.6999989,.3999996,.5,.1000004],
+     marker:{
+           color: ['#ED1C24','#ED1C24','#ED1C24','#ED1C24','#ED1C24','#ED1C24','#004080','#ED1C24','#ED1C24','#ED1C24','#ED1C24','#ED1C24','#ED1C24','#ED1C24','#ED1C24','#004080','#ED1C24','#ED1C24','#ED1C24','#ED1C24','#ED1C24','#ED1C24']
+     },
+     type: 'bar'
+   };
+   
+   var data = [trace1];
+   
+   var layout = {
+   
+   title: {
+         text: 'Temperature variations in India (baseline 2000)',
+         font: {
+           family: 'Montserrat,bold',
+           size: 20,
+           color: '#212121'
+         }
+       },
+   
+     autosize: true,
+       
+     paper_bgcolor: 'transparent',
+     plot_bgcolor: 'transparent',
+      yaxis: {
+       tickfont: {
+         family: 'Verdana',
+         size: 15,
+         color: '#212121'
+       },
+     title: {
+         text: 'Temperature (ºC)',
+         font: {
+           family: 'Verdana',
+           size: 15,
+           color: '#212121'
+         }
+       },
+       range: ['-1', '1'],  
+     },
+      xaxis: {
+       tickfont: {
+         family: 'Verdana',
+         size: 15,
+         color: '#212121'
+       },    
+        font: {
+           family: 'Verdana',
+           size: 15,
+           color: '#212121'
+         }
+     },
+     
+     
+   };
+   
+   
+   
+   Plotly.newPlot('barchart', data, layout); 
+   
+   </script>
+   
+    
+   </div>
+    <script>
+        CSS.paintWorklet.addModule('./dist/rough-painter.bundled.js');
+    </script>
+
+</body>
+
+</html>
