@@ -53,8 +53,8 @@
             font-size: 20px;
             font-weight:lighter;
             font-family:'Montserrat',sans-serif;
-            margin-top:35px;
-            margin-bottom:35px;
+            margin-top:30px;
+            margin-bottom:30px;
             margin-left:10px;
             width:100%;
         }
@@ -270,6 +270,14 @@
       opacity: 0.3
     }
 
+    .sizeMLgn {
+      position:relative;
+      top: 230px;
+      left: 680px;
+      right: 300px;
+      bottom: 10px;
+    }
+
     .playpauseBtn {
       position:relative;
       transition: .5s ease;
@@ -422,9 +430,7 @@
             
             
             <p class="mid-text">
-                India has the second-highest population globally and is deeply affected by a high poverty 
-                level across its population. Climate change has already and will continue to affect different 
-                parts of its economy in negative ways. 
+                India is the second most populated country globally and is characterized by high poverty levels across its population. For this reason, it is also one of the most affected countries by Climate Change.
             </p>
             <p class="mid-text">
                 Even though India's CO2 emissions are low compared to other countries, the exposure is so high 
@@ -472,6 +478,9 @@
         <div class="middlechart">
             <section class="chart2">
                 <div id = "bubbleDiv"></div>
+                <div class="sizeMLgn">
+                <img src="./data/India/size_d.jpg" style="height:130px;width:150px" alt="Submit">
+            </div>
             </section>
         </div>
 
@@ -482,14 +491,10 @@
                 </span>
             </div>
             <p class="mid-text">
-                According to the Intergovernmental Panel on Climate Change (IPCC), the increase of 1.5ºC in the global 
-                average temperature will likely further aggravate India's current environmental situation. 
+                India has a wide range of climates, where tropical monsoons characterize the south of the country, while the north has more temperate weather. In relation to the northwest, this part of the country is mainly composed of deserts, and it is also the most affected region by climate change.  
             </p>
         </div>
-        <div class="middlechart">
-            <div id="barchart" style="text-align: center;"></div>
-        </div>
-        
+                
         <div class="middlechart" style="height: 650px;">
             <div id = "map" style="text-align: center;"></div>
 
@@ -505,6 +510,16 @@
             <div class="colorLgn">
                 <img src="./data/India/color1.jpg" style="height:50px;width:250px" alt="Submit">
             </div>
+        </div> 
+ 
+        <div class="middleThings">
+         <p class="mid-text">
+                According to the Intergovernmental Panel on Climate Change (IPCC), the increase of 1.5ºC in the global average temperature will likely further aggravate India's current environmental situation. 
+          </p>
+        </div>
+
+        <div class="middlechart">
+            <div id="barchart" style="text-align: center;"></div>
         </div>
 
         <div class="middleThings">
@@ -759,8 +774,8 @@
    
          //Initialization of display_year text floating in the graph
          svg.append("text")
-            .attr("y", 530)
-            .attr("x", 50)
+            .attr("y", 590)
+            .attr("x", 30)
             .style("text-anchor", "start")
             .attr("id", "year")
             .attr("class", "year")
@@ -826,8 +841,8 @@
    
           // Text label for Year in background
           svg.select("#year")
-              .attr("y", 530)
-              .attr("x", 50)
+              .attr("y", 590)
+              .attr("x", 30)
               .style("text-anchor", "start")
               .attr("class", "year")
             .text(yearScale(display_year));
@@ -1051,7 +1066,7 @@
            color: '#212121'
          }
        },
-       range: ['-1', '1'],  
+       range: ['-.5', '1'],  
      },
       xaxis: {
        tickfont: {
