@@ -33,23 +33,23 @@
 2016,Global Land-Ocean Temperature Index ,Temperature Anomaly (Celsius),0.88,0.9728681
 2017,Global Land-Ocean Temperature Index ,Temperature Anomaly (Celsius),0.91,1.179784077
 2018,Global Land-Ocean Temperature Index ,Temperature Anomaly (Celsius),0.95,1.455672045
-2002,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),373.28,-1.54918695
-2003,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),375.8,-1.32038987
-2004,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),377.52,-1.164226784
-2005,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),379.8,-0.957219902
-2006,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),381.9,-0.766555669
-2007,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),383.79,-0.594957859
-2008,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),385.6,-0.430623449
-2009,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),387.43,-0.264473188
-2010,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),389.9,-0.040215733
-2011,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),391.65,0.118671128
-2012,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),393.85,0.31841461
-2013,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),396.52,0.560830564
-2014,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),398.65,0.754218571
-2015,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),400.83,0.952146204
-2016,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),404.24,1.261748602
-2017,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),406.55,1.471479258
-2018,Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),408.52,1.650340467
+2002,Atmospheric Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),373.28,-1.54918695
+2003,Atmospheric Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),375.8,-1.32038987
+2004,Atmospheric Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),377.52,-1.164226784
+2005,Atmospheric Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),379.8,-0.957219902
+2006,Atmospheric Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),381.9,-0.766555669
+2007,Atmospheric Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),383.79,-0.594957859
+2008,Atmospheric Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),385.6,-0.430623449
+2009,Atmospheric Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),387.43,-0.264473188
+2010,Atmospheric Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),389.9,-0.040215733
+2011,Atmospheric Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),391.65,0.118671128
+2012,Atmospheric Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),393.85,0.31841461
+2013,Atmospheric Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),396.52,0.560830564
+2014,Atmospheric Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),398.65,0.754218571
+2015,Atmospheric Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),400.83,0.952146204
+2016,Atmospheric Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),404.24,1.261748602
+2017,Atmospheric Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),406.55,1.471479258
+2018,Atmospheric Carbon Dioxide Concentration ,Atmospheric CO2 Concentration (ppm),408.52,1.650340467
 2002,Average Arctic Ice Area in September ,Million Square Kilometres,4030000,1.071966293
 2003,Average Arctic Ice Area in September ,Million Square Kilometres,4050000,1.109965098
 2004,Average Arctic Ice Area in September ,Million Square Kilometres,4390000,1.755944786
@@ -67,20 +67,20 @@
 2016,Average Arctic Ice Area in September ,Million Square Kilometres,2910000,-1.055966796
 2017,Average Arctic Ice Area in September ,Million Square Kilometres,3350000,-0.219993083
 2018,Average Arctic Ice Area in September ,Million Square Kilometres,3350000,-0.219993083
-2002,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-6.8,1.294003202
-2003,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-115.8,1.160690399
-2004,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-263.1,0.980534657
-2005,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-229.2,1.021996161
-2006,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-130.8,1.1423446
-2007,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-317.2,0.914367476
-2008,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-587.9,0.583286964
-2009,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-563.1,0.613618685
-2010,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-841.6,0.272998357
-2011,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-940.1,0.152527613
-2012,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-1074.8,-0.012217658
-2013,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-1285.1,-0.269425754
-2014,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-1495.9,-0.527245377
-2015,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-1847.6,-0.957393202
-2016,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-1769.5,-0.861872744
-2017,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-1803.2,-0.903089638
-2018,Antarctica Mass Variation ,Antarctica Mass (Gigatons),-2148,-1.324798395
+2002,Antarctica Glacier Mass Variation,Antarctica Mass (Gigatons),-6.8,1.294003202
+2003,Antarctica Glacier Mass Variation,Antarctica Mass (Gigatons),-115.8,1.160690399
+2004,Antarctica Glacier Mass Variation,Antarctica Mass (Gigatons),-263.1,0.980534657
+2005,Antarctica Glacier Mass Variation,Antarctica Mass (Gigatons),-229.2,1.021996161
+2006,Antarctica Glacier Mass Variation,Antarctica Mass (Gigatons),-130.8,1.1423446
+2007,Antarctica Glacier Mass Variation,Antarctica Mass (Gigatons),-317.2,0.914367476
+2008,Antarctica Glacier Mass Variation,Antarctica Mass (Gigatons),-587.9,0.583286964
+2009,Antarctica Glacier Mass Variation,Antarctica Mass (Gigatons),-563.1,0.613618685
+2010,Antarctica Glacier Mass Variation,Antarctica Mass (Gigatons),-841.6,0.272998357
+2011,Antarctica Glacier Mass Variation,Antarctica Mass (Gigatons),-940.1,0.152527613
+2012,Antarctica Glacier Mass Variation,Antarctica Mass (Gigatons),-1074.8,-0.012217658
+2013,Antarctica Glacier Mass Variation,Antarctica Mass (Gigatons),-1285.1,-0.269425754
+2014,Antarctica Glacier Mass Variation,Antarctica Mass (Gigatons),-1495.9,-0.527245377
+2015,Antarctica Glacier Mass Variation,Antarctica Mass (Gigatons),-1847.6,-0.957393202
+2016,Antarctica Glacier Mass Variation,Antarctica Mass (Gigatons),-1769.5,-0.861872744
+2017,Antarctica Glacier Mass Variation,Antarctica Mass (Gigatons),-1803.2,-0.903089638
+2018,Antarctica Glacier Mass Variation,Antarctica Mass (Gigatons),-2148,-1.324798395
