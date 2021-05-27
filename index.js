@@ -267,7 +267,6 @@ class Scatter extends China {
       .duration(1000)
       .style("opacity", 0.8)
       .call(d3.axisLeft(this.y).tickSize(-this.innerW));
-    //对齐文本和线
 
     this.AxisY.selectAll(".tick").select("text").attr("dy", "-0.5em");
     this.addLine();
